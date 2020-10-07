@@ -1,0 +1,27 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "LoadBarBg",
+    "texture": "c0KGvHpPpD1ZtEXj6+n1i6",
+    "rect": [
+      0,
+      0,
+      120,
+      86
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      120,
+      86
+    ],
+    "capInsets": [
+      58,
+      0,
+      58,
+      0
+    ]
+  }
+}

@@ -1,0 +1,37 @@
+[
+  {
+    "__type__": "cc.SpriteFrame",
+    "content": {
+      "name": "loading",
+      "texture": "6arW6l2QpPMaieuMvHrdmF",
+      "rect": [
+        15,
+        18,
+        118,
+        117
+      ],
+      "offset": [
+        -1.5,
+        -1
+      ],
+      "originalSize": [
+        151,
+        151
+      ],
+      "capInsets": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "__type__": "cc.ParticleAsset",
+    "_name": "loading",
+    "_native": ".plist",
+    "spriteFrame": {
+      "__uuid__": "22gXULfMRFLLgWvMfsSxU7"
+    }
+  }
+]

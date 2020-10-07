@@ -1,0 +1,27 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "LoadBar",
+    "texture": "f0cVqXCn1BcLzdPVNqi6FP",
+    "rect": [
+      0,
+      0,
+      64,
+      60
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      64,
+      60
+    ],
+    "capInsets": [
+      31,
+      0,
+      31,
+      0
+    ]
+  }
+}

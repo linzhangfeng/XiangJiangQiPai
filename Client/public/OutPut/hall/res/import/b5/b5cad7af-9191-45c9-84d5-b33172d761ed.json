@@ -1,0 +1,27 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "preload_3002",
+    "texture": "d2e3P8KAVG9LktxqcUuQfb",
+    "rect": [
+      0,
+      0,
+      1334,
+      750
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      1334,
+      750
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}
