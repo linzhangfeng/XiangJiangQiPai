@@ -186,7 +186,7 @@
       "array": [
         0,
         0,
-        298.77876430563134,
+        272.7980021920982,
         0,
         0,
         0,
@@ -1858,17 +1858,13 @@
     "_id": "77esB2D9ZLE7vBawKWOcg3"
   },
   {
-    "__type__": "01ae77Dr7lFNYqAAWprWc7g",
+    "__type__": "3e6b5MOa+lI5ItQ1s1jaRPB",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 2
     },
     "_enabled": true,
-    "usersNodeArr": [],
-    "headNodePrefab": {
-      "__uuid__": "2a933459-f5ee-40a4-b27b-d7d5864b1a11"
-    },
-    "_id": "6a8wKY7gJDhJTxHJZ8JtHa"
+    "_id": "f6EyyRvVFJEbjid6hRS6Lh"
   }
 ]

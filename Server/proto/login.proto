@@ -1,0 +1,43 @@
+syntax = "proto2";
+package proto.login;
+
+import "player.proto";
+
+message Login
+{
+	optional int32 uid = 1;					//uid
+	optional int32 roomid = 2;				//房间号
+	optional string skey = 3;			
+	optional int32 gameid = 4;				//游戏类型，根据此类型创建桌子类型
+	optional bool voice = 5;				//语音
+	optional bool reconnect = 6;			//断线重连需要赋值true
+	repeated game.Player player_info = 7;	//所有玩家基础信息
+}
+
+
+message LoginAck
+{
+	optional int32 code = 1;			//404	:房间不存在
+}
+
+
+message Emoji
+{
+	optional int32 seatid = 1;
+	optional int32 id = 2;
+}
+
+
+message Heart
+{
+	optional int64 time = 1; 
+}
+
+//声音上报 下发
+//SERVER_VOICE = 10012,			//玩家voice状态
+//CLIENT_VOICE = 1012,			//玩家voice状态
+message Voice
+{
+	optional int32 charid = 1;
+	optional int32 status = 2;		//1:开启 
+}

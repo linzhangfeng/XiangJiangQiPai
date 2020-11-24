@@ -1,0 +1,94 @@
+syntax = "proto2";
+package proto.game.shetiqi;
+
+message Login
+{
+	optional int32 uid = 1;					//uid
+	optional int32 roomid = 2;				//房间号
+	optional string skey = 3;			
+	optional int32 gameid = 4;				//游戏类型，根据此类型创建桌子类型
+	optional bool voice = 5;				//语音
+	optional bool reconnect = 6;			//断线重连需要赋值true
+	repeated Player player_info = 7;	//所有玩家基础信息
+}
+
+
+message LoginAck
+{
+	optional int32 code = 1;
+}
+
+message Emoji
+{
+  optional int32 seatid = 1;
+  optional int32 id = 2;
+}
+
+message Heart
+{
+	optional int64 time = 1; 
+}
+
+//道具
+message Prop
+{
+	optional int32 prop_id = 1;		//道具id
+	optional int32 pos = 2;			//道具位置
+}
+
+//玩家信息
+message Player
+{
+	optional int32 uid = 1;	
+	optional int32 sex = 2;
+	optional int32 avatar = 3;
+	optional string name = 4;
+	optional int32 voice = 5;		//语音状态
+	optional int32 seatid = 6;		//玩家位置
+	optional int32 robot = 7;		//true：机器人
+}
+
+message GameSence
+{
+	repeated Player player_info = 1;		//所有玩家基础信息
+	repeated Prop prop_info = 2;				//道具信息
+	repeated int32 player_pos = 3;				//每个玩家的位置 （超时时间内重连，更新对方玩家位置）
+	repeated int32 shaizi = 4;					//上次玩家骰子位置
+	optional int32 cur_seatid = 5;				//当前摇骰子玩家
+	optional int32 shaizi_time = 6;				//剩余时间
+}
+
+//轮到玩家摇骰子
+message enterShaiZi
+{
+	optional int32 seatid = 1;			
+	optional int32 issix = 2;
+}
+
+message GetShaiZi
+{
+	optional int32 seatid = 1;			//可以为空
+}
+
+//发送骰子信息
+message ShaiZiInfo
+{
+	optional int32 seatid = 1;
+	optional int32 shaizi = 2;
+	optional int32 start_pos = 3;		//开始地方
+	optional int32 end_pos = 4;			//结束地方
+	optional int32 props = 5;			//途中遇到的道具
+	optional int32 out_time = 6;		//游戏有两次超时，1：超时  空：不超时
+}
+
+message GameEnd
+{
+	optional int32 end_type = 1;		//0(空)：正常打完 2:玩家退出  3:玩家投降  
+	optional int32 seatid = 2;			//赢家 uid
+}
+
+message Voice
+{
+  optional int32 charid = 1;
+  optional int32 status = 2;    //1:开启
+}

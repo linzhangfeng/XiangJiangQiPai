@@ -1,0 +1,3 @@
+/cygdrive/d/linzhangfeng/MyGithub/boosttest/build/CMakeFiles/rebuild_cache.dir
+/cygdrive/d/linzhangfeng/MyGithub/boosttest/build/CMakeFiles/edit_cache.dir
+/cygdrive/d/linzhangfeng/MyGithub/boosttest/build/CMakeFiles/server.dir

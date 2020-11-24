@@ -1,0 +1,16 @@
+syntax = "proto2";
+package proto.game;
+
+
+//玩家信息
+message Player
+{
+	optional int32 uid = 1;	
+	optional int32 sex = 2;
+	optional int32 avatar = 3;
+	optional string name = 4;
+	optional int32 voice = 5;		//语音状态
+	optional int32 seatid = 6;		//玩家位置
+	optional int32  robot = 7;		//true：机器人
+}
+
