@@ -9,7 +9,6 @@ message Login
 	optional int32 gameid = 4;				//游戏类型，根据此类型创建桌子类型
 	optional bool voice = 5;				//语音
 	optional bool reconnect = 6;			//断线重连需要赋值true
-	repeated Player player_info = 7;	//所有玩家基础信息
 }
 
 

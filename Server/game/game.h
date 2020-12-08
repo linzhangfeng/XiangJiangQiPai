@@ -25,6 +25,8 @@ public:
 private:
     Game();
 
+    void send(int uid, int cmd, google::protobuf::Message& msg);
+
     boost::asio::steady_timer m_time_up_users;
     std::unique_ptr <TableFactory> m_ptable_factory;
     std::unordered_map<int, std::shared_ptr<CWsClient>> m_map_client;        //uid -> client

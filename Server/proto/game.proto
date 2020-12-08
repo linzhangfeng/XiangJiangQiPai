@@ -1,0 +1,21 @@
+syntax = "proto2";
+package proto.game;
+
+
+//玩家信息
+message GameStart
+{
+	optional int32 bankerId = 1;        //庄家ID
+}
+
+//玩家信息
+message GameScene
+{
+	optional int32 bankerId = 1;        //庄家ID
+}
+
+//玩家信息
+message GameEnd
+{
+	optional int32 bankerId = 1;        //庄家ID
+}

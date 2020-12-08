@@ -31,6 +31,26 @@ void Game::Init() {
 
 }
 
+
+void Game::send(int uid, int cmd, google::protobuf::Message &msg) {
+    if (m_map_client.find(uid) == m_map_client.end()) {
+        g_log.info("uid:%d not find ", uid);
+        return;
+    }
+
+    MsgHead mhead;
+    mhead.cmd = cmd;
+    mhead.length = msg.ByteSize();
+    string str((char *) &mhead, (char *) &mhead + sizeof(MsgHead));
+    str.append(msg.SerializeAsString());
+
+    if (cmd != SERVER_HEART) {
+        g_log.info("uid:%d cmd:%d %s", uid, cmd, Protobuf2Json(msg).data());
+    }
+    m_map_client[uid]->Send(str);
+}
+
+
 void Game::hand_client_login(std::shared_ptr <CWsClient> pclient, const char *data, int length) {
     proto::login::Login msg;
     if (!msg.ParseFromArray(data, length)) {
@@ -59,8 +79,6 @@ void Game::hand_client_login(std::shared_ptr <CWsClient> pclient, const char *da
     if (msg.has_voice()) pclient->SetVoice(msg.voice());
     if (msg.has_reconnect())pclient->SetReConnect(msg.reconnect());
 
-//    m_map_skey_client[pclient->GetUid()] = pclient;
-
     //登录成功
     proto::login::LoginAck ack;
     ack.set_code(1);
@@ -75,30 +93,9 @@ void Game::hand_client_login(std::shared_ptr <CWsClient> pclient, const char *da
             return;
         }
         ptable->SetRoomid(roomid);
-//        ptable->InitUser(pclient->GetRoomUser());
-
         m_map_table[roomid] = ptable;
     }
-
-    //初始化用户数据
-    unordered_map<int, shared_ptr<Player>> map_player = m_map_table[roomid]->getMapPlayer();
-    for (int i = 0; i < msg.player_info_size(); ++i) {
-        auto p = make_shared<Player>();
-        const proto::game::Player &pinfo = msg.player_info(i);
-        p->SetUid(pinfo.uid());
-        p->SetSex(pinfo.sex());
-        p->SetAvatar(pinfo.avatar());
-        p->SetName(pinfo.name());
-        p->SetRobot(pinfo.robot());
-        if (p->GetUid() == -1) {
-            g_log.info("uid == -1");
-            return;
-        }
-        map_player[p->GetUid()] = p;
-    }
-//    pclient->SetRoomUser(map_player);
-    shared_ptr <Player> player = map_player[pclient->GetUid()];
-    m_map_table[roomid]->upTable(player);
+    m_map_table[roomid]->handler_client_msg(pclient->GetUid(), CLIENT_LOGIN, data, length, pclient);
 }
 
 void Game::hand_client_heart(std::shared_ptr <CWsClient> pclient, const char *data, int length) {

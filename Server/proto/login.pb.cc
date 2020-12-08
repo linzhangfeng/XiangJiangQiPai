@@ -14,7 +14,7 @@
 #include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
-extern PROTOBUF_INTERNAL_EXPORT_player_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Player_player_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_login_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Player_login_2eproto;
 namespace proto {
 namespace login {
 class LoginDefaultTypeInternal {
@@ -29,6 +29,10 @@ class EmojiDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Emoji> _instance;
 } _Emoji_default_instance_;
+class PlayerDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Player> _instance;
+} _Player_default_instance_;
 class HeartDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Heart> _instance;
@@ -80,7 +84,7 @@ static void InitDefaultsscc_info_Login_login_2eproto() {
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Login_login_2eproto =
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_Login_login_2eproto}, {
-      &scc_info_Player_player_2eproto.base,}};
+      &scc_info_Player_login_2eproto.base,}};
 
 static void InitDefaultsscc_info_LoginAck_login_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -96,6 +100,20 @@ static void InitDefaultsscc_info_LoginAck_login_2eproto() {
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_LoginAck_login_2eproto =
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_LoginAck_login_2eproto}, {}};
 
+static void InitDefaultsscc_info_Player_login_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::proto::login::_Player_default_instance_;
+    new (ptr) ::proto::login::Player();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::proto::login::Player::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Player_login_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_Player_login_2eproto}, {}};
+
 static void InitDefaultsscc_info_Voice_login_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -110,7 +128,7 @@ static void InitDefaultsscc_info_Voice_login_2eproto() {
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Voice_login_2eproto =
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_Voice_login_2eproto}, {}};
 
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_login_2eproto[5];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_login_2eproto[6];
 static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_login_2eproto = nullptr;
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_login_2eproto = nullptr;
 
@@ -150,6 +168,25 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_login_2eproto::offsets[] PROTO
   PROTOBUF_FIELD_OFFSET(::proto::login::Emoji, id_),
   0,
   1,
+  PROTOBUF_FIELD_OFFSET(::proto::login::Player, _has_bits_),
+  PROTOBUF_FIELD_OFFSET(::proto::login::Player, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::proto::login::Player, uid_),
+  PROTOBUF_FIELD_OFFSET(::proto::login::Player, sex_),
+  PROTOBUF_FIELD_OFFSET(::proto::login::Player, avatar_),
+  PROTOBUF_FIELD_OFFSET(::proto::login::Player, name_),
+  PROTOBUF_FIELD_OFFSET(::proto::login::Player, voice_),
+  PROTOBUF_FIELD_OFFSET(::proto::login::Player, seatid_),
+  PROTOBUF_FIELD_OFFSET(::proto::login::Player, robot_),
+  1,
+  2,
+  3,
+  0,
+  4,
+  5,
+  6,
   PROTOBUF_FIELD_OFFSET(::proto::login::Heart, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::proto::login::Heart, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -171,44 +208,49 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 0, 12, sizeof(::proto::login::Login)},
   { 19, 25, sizeof(::proto::login::LoginAck)},
   { 26, 33, sizeof(::proto::login::Emoji)},
-  { 35, 41, sizeof(::proto::login::Heart)},
-  { 42, 49, sizeof(::proto::login::Voice)},
+  { 35, 47, sizeof(::proto::login::Player)},
+  { 54, 60, sizeof(::proto::login::Heart)},
+  { 61, 68, sizeof(::proto::login::Voice)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::proto::login::_Login_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::proto::login::_LoginAck_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::proto::login::_Emoji_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::proto::login::_Player_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::proto::login::_Heart_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::proto::login::_Voice_default_instance_),
 };
 
 const char descriptor_table_protodef_login_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\013login.proto\022\013proto.login\032\014player.proto"
-  "\"\215\001\n\005Login\022\013\n\003uid\030\001 \001(\005\022\016\n\006roomid\030\002 \001(\005\022"
-  "\014\n\004skey\030\003 \001(\t\022\016\n\006gameid\030\004 \001(\005\022\r\n\005voice\030\005"
-  " \001(\010\022\021\n\treconnect\030\006 \001(\010\022\'\n\013player_info\030\007"
-  " \003(\0132\022.proto.game.Player\"\030\n\010LoginAck\022\014\n\004"
-  "code\030\001 \001(\005\"#\n\005Emoji\022\016\n\006seatid\030\001 \001(\005\022\n\n\002i"
-  "d\030\002 \001(\005\"\025\n\005Heart\022\014\n\004time\030\001 \001(\003\"\'\n\005Voice\022"
-  "\016\n\006charid\030\001 \001(\005\022\016\n\006status\030\002 \001(\005"
+  "\n\013login.proto\022\013proto.login\"\216\001\n\005Login\022\013\n\003"
+  "uid\030\001 \001(\005\022\016\n\006roomid\030\002 \001(\005\022\014\n\004skey\030\003 \001(\t\022"
+  "\016\n\006gameid\030\004 \001(\005\022\r\n\005voice\030\005 \001(\010\022\021\n\treconn"
+  "ect\030\006 \001(\010\022(\n\013player_info\030\007 \003(\0132\023.proto.l"
+  "ogin.Player\"\030\n\010LoginAck\022\014\n\004code\030\001 \001(\005\"#\n"
+  "\005Emoji\022\016\n\006seatid\030\001 \001(\005\022\n\n\002id\030\002 \001(\005\"n\n\006Pl"
+  "ayer\022\013\n\003uid\030\001 \001(\005\022\013\n\003sex\030\002 \001(\005\022\016\n\006avatar"
+  "\030\003 \001(\005\022\014\n\004name\030\004 \001(\t\022\r\n\005voice\030\005 \001(\005\022\016\n\006s"
+  "eatid\030\006 \001(\005\022\r\n\005robot\030\007 \001(\005\"\025\n\005Heart\022\014\n\004t"
+  "ime\030\001 \001(\003\"\'\n\005Voice\022\016\n\006charid\030\001 \001(\005\022\016\n\006st"
+  "atus\030\002 \001(\005"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_login_2eproto_deps[1] = {
-  &::descriptor_table_player_2eproto,
 };
-static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_login_2eproto_sccs[5] = {
+static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_login_2eproto_sccs[6] = {
   &scc_info_Emoji_login_2eproto.base,
   &scc_info_Heart_login_2eproto.base,
   &scc_info_Login_login_2eproto.base,
   &scc_info_LoginAck_login_2eproto.base,
+  &scc_info_Player_login_2eproto.base,
   &scc_info_Voice_login_2eproto.base,
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_login_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_login_2eproto = {
-  false, false, descriptor_table_protodef_login_2eproto, "login.proto", 311,
-  &descriptor_table_login_2eproto_once, descriptor_table_login_2eproto_sccs, descriptor_table_login_2eproto_deps, 5, 1,
+  false, false, descriptor_table_protodef_login_2eproto, "login.proto", 410,
+  &descriptor_table_login_2eproto_once, descriptor_table_login_2eproto_sccs, descriptor_table_login_2eproto_deps, 6, 0,
   schemas, file_default_instances, TableStruct_login_2eproto::offsets,
-  file_level_metadata_login_2eproto, 5, file_level_enum_descriptors_login_2eproto, file_level_service_descriptors_login_2eproto,
+  file_level_metadata_login_2eproto, 6, file_level_enum_descriptors_login_2eproto, file_level_service_descriptors_login_2eproto,
 };
 
 // Force running AddDescriptors() at dynamic initialization time.
@@ -243,9 +285,6 @@ class Login::_Internal {
   }
 };
 
-void Login::clear_player_info() {
-  player_info_.Clear();
-}
 Login::Login(::PROTOBUF_NAMESPACE_ID::Arena* arena)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena),
   player_info_(arena) {
@@ -383,7 +422,7 @@ const char* Login::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::inte
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // repeated .proto.game.Player player_info = 7;
+      // repeated .proto.login.Player player_info = 7;
       case 7:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 58)) {
           ptr -= 1;
@@ -465,7 +504,7 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(6, this->_internal_reconnect(), target);
   }
 
-  // repeated .proto.game.Player player_info = 7;
+  // repeated .proto.login.Player player_info = 7;
   for (unsigned int i = 0,
       n = static_cast<unsigned int>(this->_internal_player_info_size()); i < n; i++) {
     target = stream->EnsureSpace(target);
@@ -489,7 +528,7 @@ size_t Login::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // repeated .proto.game.Player player_info = 7;
+  // repeated .proto.login.Player player_info = 7;
   total_size += 1UL * this->_internal_player_info_size();
   for (const auto& msg : this->player_info_) {
     total_size +=
@@ -1097,6 +1136,416 @@ void Emoji::InternalSwap(Emoji* other) {
 
 // ===================================================================
 
+void Player::InitAsDefaultInstance() {
+}
+class Player::_Internal {
+ public:
+  using HasBits = decltype(std::declval<Player>()._has_bits_);
+  static void set_has_uid(HasBits* has_bits) {
+    (*has_bits)[0] |= 2u;
+  }
+  static void set_has_sex(HasBits* has_bits) {
+    (*has_bits)[0] |= 4u;
+  }
+  static void set_has_avatar(HasBits* has_bits) {
+    (*has_bits)[0] |= 8u;
+  }
+  static void set_has_name(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+  static void set_has_voice(HasBits* has_bits) {
+    (*has_bits)[0] |= 16u;
+  }
+  static void set_has_seatid(HasBits* has_bits) {
+    (*has_bits)[0] |= 32u;
+  }
+  static void set_has_robot(HasBits* has_bits) {
+    (*has_bits)[0] |= 64u;
+  }
+};
+
+Player::Player(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:proto.login.Player)
+}
+Player::Player(const Player& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _has_bits_(from._has_bits_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (from._internal_has_name()) {
+    name_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_name(),
+      GetArena());
+  }
+  ::memcpy(&uid_, &from.uid_,
+    static_cast<size_t>(reinterpret_cast<char*>(&robot_) -
+    reinterpret_cast<char*>(&uid_)) + sizeof(robot_));
+  // @@protoc_insertion_point(copy_constructor:proto.login.Player)
+}
+
+void Player::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_Player_login_2eproto.base);
+  name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  ::memset(&uid_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&robot_) -
+      reinterpret_cast<char*>(&uid_)) + sizeof(robot_));
+}
+
+Player::~Player() {
+  // @@protoc_insertion_point(destructor:proto.login.Player)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void Player::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void Player::ArenaDtor(void* object) {
+  Player* _this = reinterpret_cast< Player* >(object);
+  (void)_this;
+}
+void Player::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void Player::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const Player& Player::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Player_login_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void Player::Clear() {
+// @@protoc_insertion_point(message_clear_start:proto.login.Player)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    name_.ClearNonDefaultToEmpty();
+  }
+  if (cached_has_bits & 0x0000007eu) {
+    ::memset(&uid_, 0, static_cast<size_t>(
+        reinterpret_cast<char*>(&robot_) -
+        reinterpret_cast<char*>(&uid_)) + sizeof(robot_));
+  }
+  _has_bits_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* Player::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
+  ::PROTOBUF_NAMESPACE_ID::Arena* arena = GetArena(); (void)arena;
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // optional int32 uid = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          _Internal::set_has_uid(&has_bits);
+          uid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // optional int32 sex = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          _Internal::set_has_sex(&has_bits);
+          sex_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // optional int32 avatar = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
+          _Internal::set_has_avatar(&has_bits);
+          avatar_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // optional string name = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          auto str = _internal_mutable_name();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          #ifndef NDEBUG
+          ::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "proto.login.Player.name");
+          #endif  // !NDEBUG
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // optional int32 voice = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 40)) {
+          _Internal::set_has_voice(&has_bits);
+          voice_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // optional int32 seatid = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 48)) {
+          _Internal::set_has_seatid(&has_bits);
+          seatid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // optional int32 robot = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 56)) {
+          _Internal::set_has_robot(&has_bits);
+          robot_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  _has_bits_.Or(has_bits);
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* Player::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:proto.login.Player)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = _has_bits_[0];
+  // optional int32 uid = 1;
+  if (cached_has_bits & 0x00000002u) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(1, this->_internal_uid(), target);
+  }
+
+  // optional int32 sex = 2;
+  if (cached_has_bits & 0x00000004u) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(2, this->_internal_sex(), target);
+  }
+
+  // optional int32 avatar = 3;
+  if (cached_has_bits & 0x00000008u) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(3, this->_internal_avatar(), target);
+  }
+
+  // optional string name = 4;
+  if (cached_has_bits & 0x00000001u) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SERIALIZE,
+      "proto.login.Player.name");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_name(), target);
+  }
+
+  // optional int32 voice = 5;
+  if (cached_has_bits & 0x00000010u) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(5, this->_internal_voice(), target);
+  }
+
+  // optional int32 seatid = 6;
+  if (cached_has_bits & 0x00000020u) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(6, this->_internal_seatid(), target);
+  }
+
+  // optional int32 robot = 7;
+  if (cached_has_bits & 0x00000040u) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(7, this->_internal_robot(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:proto.login.Player)
+  return target;
+}
+
+size_t Player::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:proto.login.Player)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x0000007fu) {
+    // optional string name = 4;
+    if (cached_has_bits & 0x00000001u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+          this->_internal_name());
+    }
+
+    // optional int32 uid = 1;
+    if (cached_has_bits & 0x00000002u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+          this->_internal_uid());
+    }
+
+    // optional int32 sex = 2;
+    if (cached_has_bits & 0x00000004u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+          this->_internal_sex());
+    }
+
+    // optional int32 avatar = 3;
+    if (cached_has_bits & 0x00000008u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+          this->_internal_avatar());
+    }
+
+    // optional int32 voice = 5;
+    if (cached_has_bits & 0x00000010u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+          this->_internal_voice());
+    }
+
+    // optional int32 seatid = 6;
+    if (cached_has_bits & 0x00000020u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+          this->_internal_seatid());
+    }
+
+    // optional int32 robot = 7;
+    if (cached_has_bits & 0x00000040u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+          this->_internal_robot());
+    }
+
+  }
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void Player::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:proto.login.Player)
+  GOOGLE_DCHECK_NE(&from, this);
+  const Player* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<Player>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:proto.login.Player)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:proto.login.Player)
+    MergeFrom(*source);
+  }
+}
+
+void Player::MergeFrom(const Player& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:proto.login.Player)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = from._has_bits_[0];
+  if (cached_has_bits & 0x0000007fu) {
+    if (cached_has_bits & 0x00000001u) {
+      _internal_set_name(from._internal_name());
+    }
+    if (cached_has_bits & 0x00000002u) {
+      uid_ = from.uid_;
+    }
+    if (cached_has_bits & 0x00000004u) {
+      sex_ = from.sex_;
+    }
+    if (cached_has_bits & 0x00000008u) {
+      avatar_ = from.avatar_;
+    }
+    if (cached_has_bits & 0x00000010u) {
+      voice_ = from.voice_;
+    }
+    if (cached_has_bits & 0x00000020u) {
+      seatid_ = from.seatid_;
+    }
+    if (cached_has_bits & 0x00000040u) {
+      robot_ = from.robot_;
+    }
+    _has_bits_[0] |= cached_has_bits;
+  }
+}
+
+void Player::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:proto.login.Player)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void Player::CopyFrom(const Player& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:proto.login.Player)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool Player::IsInitialized() const {
+  return true;
+}
+
+void Player::InternalSwap(Player* other) {
+  using std::swap;
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  swap(_has_bits_[0], other->_has_bits_[0]);
+  name_.Swap(&other->name_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Player, robot_)
+      + sizeof(Player::robot_)
+      - PROTOBUF_FIELD_OFFSET(Player, uid_)>(
+          reinterpret_cast<char*>(&uid_),
+          reinterpret_cast<char*>(&other->uid_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata Player::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
 void Heart::InitAsDefaultInstance() {
 }
 class Heart::_Internal {
@@ -1572,6 +2021,9 @@ template<> PROTOBUF_NOINLINE ::proto::login::LoginAck* Arena::CreateMaybeMessage
 }
 template<> PROTOBUF_NOINLINE ::proto::login::Emoji* Arena::CreateMaybeMessage< ::proto::login::Emoji >(Arena* arena) {
   return Arena::CreateMessageInternal< ::proto::login::Emoji >(arena);
+}
+template<> PROTOBUF_NOINLINE ::proto::login::Player* Arena::CreateMaybeMessage< ::proto::login::Player >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::proto::login::Player >(arena);
 }
 template<> PROTOBUF_NOINLINE ::proto::login::Heart* Arena::CreateMaybeMessage< ::proto::login::Heart >(Arena* arena) {
   return Arena::CreateMessageInternal< ::proto::login::Heart >(arena);

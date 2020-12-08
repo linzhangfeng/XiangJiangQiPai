@@ -8,7 +8,7 @@ project(server)
 set(LIBRARIES_FROM_REFERENCES "")
 add_executable(server main.cpp common/config.cpp common/common.cpp common/log.cc common/protobuf2json.cpp common/sql_time.cpp /
         network/chttp.cpp network/ws_client.cpp network/ws_server.cpp /
-        proto/login.pb.cc proto/player.pb.cc /
+        proto/login.pb.cc proto/game.pb.cc /
         game/game.cpp game/player.cpp game/table.cpp game/table_factory.cpp game/table_shetiqi.cpp /
         task/task_list.cpp task/task_thread.cpp
         )

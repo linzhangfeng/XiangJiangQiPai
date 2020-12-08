@@ -1,9 +1,7 @@
 syntax = "proto2";
 package proto.login;
 
-import "player.proto";
-
-message Login
+message ReqLogin
 {
 	optional int32 uid = 1;					//uid
 	optional int32 roomid = 2;				//房间号
@@ -11,11 +9,34 @@ message Login
 	optional int32 gameid = 4;				//游戏类型，根据此类型创建桌子类型
 	optional bool voice = 5;				//语音
 	optional bool reconnect = 6;			//断线重连需要赋值true
-	repeated game.Player player_info = 7;	//所有玩家基础信息
+}
+
+//牌桌信息
+message AckTableInfo
+{
+	required int32 seatid = 1; 		            //玩家的椅子id
+	optional int32 state = 2;	                //游戏状态
+	repeated Player players = 5;                //桌子上的玩家
+	optional int32 cardPoolNums = 7;            //牌池数量
+	optional int32 game_player = 10;			//人数
+}
+
+//上桌成功
+message  AckUpTableSuccess
+{
+    required Player player = 1;	                //所有玩家基础信息
+}
+
+//下桌成功返回
+message AckDownTableSuccess
+{
+    required int32 uid = 1;
+	optional int32 seatid = 2;
+	optional int32 money = 3;
 }
 
 
-message LoginAck
+message AckLogin
 {
 	optional int32 code = 1;			//404	:房间不存在
 }
@@ -27,6 +48,17 @@ message Emoji
 	optional int32 id = 2;
 }
 
+//玩家信息
+message Player
+{
+	optional int32 uid = 1;
+	optional int32 sex = 2;
+	optional int32 avatar = 3;
+	optional string name = 4;
+	optional int32 voice = 5;		//语音状态
+	optional int32 seatid = 6;		//玩家位置
+	optional int32  robot = 7;		//true：机器人
+}
 
 message Heart
 {
@@ -34,8 +66,6 @@ message Heart
 }
 
 //声音上报 下发
-//SERVER_VOICE = 10012,			//玩家voice状态
-//CLIENT_VOICE = 1012,			//玩家voice状态
 message Voice
 {
 	optional int32 charid = 1;

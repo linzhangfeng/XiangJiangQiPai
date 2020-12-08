@@ -4,7 +4,6 @@
 #include "player.h"
 #include "../network/ws_client.h"
 #include "../common/macros.h"
-#include "../proto/player.pb.h"
 #include "user.h"
 #include <memory>
 #include <functional>
@@ -50,6 +49,22 @@ public:
     virtual ~Table();
 
 private:
+    virtual void sendGameStart();
+
+    virtual void sendGameEnd(std::vector<int> &vec);
+
+    virtual void SendGameSence(int charid);
+
+    //send房间信息
+    virtual void sendTableInfo();
+
+    //发送上桌成功
+    virtual void sendUpTableSuccess();
+
+    //发送下桌成功
+    virtual void sendDownTableSuccess();
+
+public:
     //通用消息处理
     virtual void handler_client_emoji(int charid, const char *data, int length);
 
@@ -63,7 +78,13 @@ private:
     virtual void handler_client_voice(int charid, const char *data, int length);
 
     //接收客户端消息
-    void handler_client_msg(int uid, int cmd, const char *data, int length);
+    void handler_client_msg(int uid, int cmd, const char *data, int length, std::shared_ptr <CWsClient> pclient);
+
+    //客户端登陆
+    virtual void hand_client_login(int charid, const char *data, int length);
+
+    //客户端心跳
+    virtual void hand_client_heart(int charid, const char *data, int length);
 
 protected:
     template<typename Derived>
@@ -71,23 +92,21 @@ protected:
         return std::static_pointer_cast<Derived>(shared_from_this());
     }
 
-    void Unicast(int charid, int cmd, google::protobuf::Message &msg);
+    void unicast(int charid, int cmd, google::protobuf::Message &msg);
 
-    void Brocast(int cmd, google::protobuf::Message &msg);
+    void brocast(int cmd, google::protobuf::Message &msg);
 
 
 WB_FUNC_INIT(int, m_roomid, -1, Roomid);
     std::unordered_map<int, std::function<void(int, const char *, int)>> m_map_client_cmd;
     unordered_map<int, shared_ptr<Player>> m_map_player;
-
-    virtual void SendGameSence(int charid) = 0;
-
-    virtual void SendGameStart() = 0;
+    std::unordered_map<int, std::shared_ptr<CWsClient>> m_map_client;        //uid -> client
 
     bool m_has_start{false};
     boost::asio::steady_timer m_time_start_timeout;
     boost::asio::steady_timer m_time_heart;
     int m_game_player_num = 2;
+    std::vector<int> m_vec_seatid;                    //uid
 public:
     unordered_map<int, shared_ptr<Player>> &getMapPlayer();
 
@@ -95,9 +114,18 @@ public:
 
     void downTable(shared_ptr <Player>);
 
+    void clearTable();
+
+    std::shared_ptr <Player> GetPlayer(int charid);
+
     int getCurRoomPlayerCount();
 
     virtual void GameStart();
+
+    virtual void GameEnd();
+
+    //创建一个seatid
+    int createSeatId();
 };
 
 

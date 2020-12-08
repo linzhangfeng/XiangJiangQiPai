@@ -27,7 +27,7 @@
     </projectState>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="MakefileLocalSettings">
     <option name="availableProjects">
@@ -35,15 +35,15 @@
         <entry>
           <key>
             <ExternalProjectPojo>
-              <option name="name" value="BoostTest" />
+              <option name="name" value="Server" />
               <option name="path" value="$PROJECT_DIR$" />
             </ExternalProjectPojo>
           </key>
           <value>
             <list>
               <ExternalProjectPojo>
-                <option name="name" value="BoostTest" />
-                <option name="path" value="D:\linzhangfeng\MyGithub\BoostTest" />
+                <option name="name" value="Server" />
+                <option name="path" value="D:\linzhangfeng\MyGithub\XiangJiangQiPai\Server" />
               </ExternalProjectPojo>
             </list>
           </value>
@@ -57,6 +57,7 @@
     </option>
   </component>
   <component name="ProjectId" id="1k8N55RT08GF4IyjcoA9e9zyI14" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -65,7 +66,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="cf.first.check.clang-format" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/run" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -73,7 +74,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="ics" />
+    <property name="settings.editor.selected.configurable" value="sshConsole" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -83,13 +84,6 @@
       <recent name="D:\linzhangfeng\MyGithub\boosttest\run" />
       <recent name="D:\linzhangfeng\MyGithub\boosttest\common" />
     </key>
-  </component>
-  <component name="RunManager">
-    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -104,6 +98,9 @@
       <workItem from="1605153814996" duration="45230000" />
       <workItem from="1605694312473" duration="1207000" />
       <workItem from="1605753923102" duration="73191000" />
+      <workItem from="1606208360690" duration="16179000" />
+      <workItem from="1606360346817" duration="7219000" />
+      <workItem from="1607331448706" duration="596000" />
     </task>
     <servers />
   </component>
@@ -123,22 +120,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="767" y="323" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1606043317760" />
-    <state x="806" y="144" key="SettingsEditor" timestamp="1605756977475">
+    <state x="806" y="144" key="SettingsEditor" timestamp="1606208441127">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="806" y="144" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1605756977475" />
-    <state x="619" y="87" width="818" height="804" key="find.popup" timestamp="1606189327062">
+    <state x="806" y="144" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1606208441127" />
+    <state x="619" y="87" width="818" height="804" key="find.popup" timestamp="1606375325333">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="619" y="87" width="818" height="804" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1606189327062" />
-    <state x="470" y="422" width="980" height="212" key="makefile.clean.confirm.dialog" timestamp="1605754152777">
+    <state x="619" y="87" width="818" height="804" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1606375325333" />
+    <state x="470" y="422" width="980" height="212" key="makefile.clean.confirm.dialog" timestamp="1606208364947">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="470" y="422" width="980" height="212" key="makefile.clean.confirm.dialog/0.0.1920.1040@0.0.1920.1040" timestamp="1605754152777" />
-    <state x="616" y="242" key="run.anything.popup" timestamp="1605078909744">
+    <state x="470" y="422" width="980" height="212" key="makefile.clean.confirm.dialog/0.0.1920.1040@0.0.1920.1040" timestamp="1606208364947" />
+    <state x="616" y="242" key="run.anything.popup" timestamp="1606292388363">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="616" y="242" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1605078909744" />
+    <state x="616" y="242" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1606292388363" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -149,19 +146,9 @@
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/proto/player.pb.h</url>
-          <line>25</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/game/game.cpp</url>
-          <line>55</line>
+          <line>75</line>
           <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/game/table.h</url>
-          <line>71</line>
-          <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/common/macros.h</url>

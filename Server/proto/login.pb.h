@@ -32,7 +32,6 @@
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
 #include <google/protobuf/unknown_field_set.h>
-#include "player.pb.h"
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
 #define PROTOBUF_INTERNAL_EXPORT_login_2eproto
@@ -48,7 +47,7 @@ struct TableStruct_login_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[5]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[6]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -69,6 +68,9 @@ extern LoginDefaultTypeInternal _Login_default_instance_;
 class LoginAck;
 class LoginAckDefaultTypeInternal;
 extern LoginAckDefaultTypeInternal _LoginAck_default_instance_;
+class Player;
+class PlayerDefaultTypeInternal;
+extern PlayerDefaultTypeInternal _Player_default_instance_;
 class Voice;
 class VoiceDefaultTypeInternal;
 extern VoiceDefaultTypeInternal _Voice_default_instance_;
@@ -79,6 +81,7 @@ template<> ::proto::login::Emoji* Arena::CreateMaybeMessage<::proto::login::Emoj
 template<> ::proto::login::Heart* Arena::CreateMaybeMessage<::proto::login::Heart>(Arena*);
 template<> ::proto::login::Login* Arena::CreateMaybeMessage<::proto::login::Login>(Arena*);
 template<> ::proto::login::LoginAck* Arena::CreateMaybeMessage<::proto::login::LoginAck>(Arena*);
+template<> ::proto::login::Player* Arena::CreateMaybeMessage<::proto::login::Player>(Arena*);
 template<> ::proto::login::Voice* Arena::CreateMaybeMessage<::proto::login::Voice>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace proto {
@@ -214,22 +217,22 @@ class Login PROTOBUF_FINAL :
     kVoiceFieldNumber = 5,
     kReconnectFieldNumber = 6,
   };
-  // repeated .proto.game.Player player_info = 7;
+  // repeated .proto.login.Player player_info = 7;
   int player_info_size() const;
   private:
   int _internal_player_info_size() const;
   public:
   void clear_player_info();
-  ::proto::game::Player* mutable_player_info(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::proto::game::Player >*
+  ::proto::login::Player* mutable_player_info(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::proto::login::Player >*
       mutable_player_info();
   private:
-  const ::proto::game::Player& _internal_player_info(int index) const;
-  ::proto::game::Player* _internal_add_player_info();
+  const ::proto::login::Player& _internal_player_info(int index) const;
+  ::proto::login::Player* _internal_add_player_info();
   public:
-  const ::proto::game::Player& player_info(int index) const;
-  ::proto::game::Player* add_player_info();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::proto::game::Player >&
+  const ::proto::login::Player& player_info(int index) const;
+  ::proto::login::Player* add_player_info();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::proto::login::Player >&
       player_info() const;
 
   // optional string skey = 3;
@@ -326,7 +329,7 @@ class Login PROTOBUF_FINAL :
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::proto::game::Player > player_info_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::proto::login::Player > player_info_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr skey_;
   ::PROTOBUF_NAMESPACE_ID::int32 uid_;
   ::PROTOBUF_NAMESPACE_ID::int32 roomid_;
@@ -650,6 +653,252 @@ class Emoji PROTOBUF_FINAL :
 };
 // -------------------------------------------------------------------
 
+class Player PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:proto.login.Player) */ {
+ public:
+  inline Player() : Player(nullptr) {};
+  virtual ~Player();
+
+  Player(const Player& from);
+  Player(Player&& from) noexcept
+    : Player() {
+    *this = ::std::move(from);
+  }
+
+  inline Player& operator=(const Player& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Player& operator=(Player&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance);
+  }
+  inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const Player& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const Player* internal_default_instance() {
+    return reinterpret_cast<const Player*>(
+               &_Player_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    3;
+
+  friend void swap(Player& a, Player& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(Player* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Player* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline Player* New() const final {
+    return CreateMaybeMessage<Player>(nullptr);
+  }
+
+  Player* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<Player>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const Player& from);
+  void MergeFrom(const Player& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Player* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "proto.login.Player";
+  }
+  protected:
+  explicit Player(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_login_2eproto);
+    return ::descriptor_table_login_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 4,
+    kUidFieldNumber = 1,
+    kSexFieldNumber = 2,
+    kAvatarFieldNumber = 3,
+    kVoiceFieldNumber = 5,
+    kSeatidFieldNumber = 6,
+    kRobotFieldNumber = 7,
+  };
+  // optional string name = 4;
+  bool has_name() const;
+  private:
+  bool _internal_has_name() const;
+  public:
+  void clear_name();
+  const std::string& name() const;
+  void set_name(const std::string& value);
+  void set_name(std::string&& value);
+  void set_name(const char* value);
+  void set_name(const char* value, size_t size);
+  std::string* mutable_name();
+  std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // optional int32 uid = 1;
+  bool has_uid() const;
+  private:
+  bool _internal_has_uid() const;
+  public:
+  void clear_uid();
+  ::PROTOBUF_NAMESPACE_ID::int32 uid() const;
+  void set_uid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_uid() const;
+  void _internal_set_uid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // optional int32 sex = 2;
+  bool has_sex() const;
+  private:
+  bool _internal_has_sex() const;
+  public:
+  void clear_sex();
+  ::PROTOBUF_NAMESPACE_ID::int32 sex() const;
+  void set_sex(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_sex() const;
+  void _internal_set_sex(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // optional int32 avatar = 3;
+  bool has_avatar() const;
+  private:
+  bool _internal_has_avatar() const;
+  public:
+  void clear_avatar();
+  ::PROTOBUF_NAMESPACE_ID::int32 avatar() const;
+  void set_avatar(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_avatar() const;
+  void _internal_set_avatar(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // optional int32 voice = 5;
+  bool has_voice() const;
+  private:
+  bool _internal_has_voice() const;
+  public:
+  void clear_voice();
+  ::PROTOBUF_NAMESPACE_ID::int32 voice() const;
+  void set_voice(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_voice() const;
+  void _internal_set_voice(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // optional int32 seatid = 6;
+  bool has_seatid() const;
+  private:
+  bool _internal_has_seatid() const;
+  public:
+  void clear_seatid();
+  ::PROTOBUF_NAMESPACE_ID::int32 seatid() const;
+  void set_seatid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_seatid() const;
+  void _internal_set_seatid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // optional int32 robot = 7;
+  bool has_robot() const;
+  private:
+  bool _internal_has_robot() const;
+  public:
+  void clear_robot();
+  ::PROTOBUF_NAMESPACE_ID::int32 robot() const;
+  void set_robot(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_robot() const;
+  void _internal_set_robot(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:proto.login.Player)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::int32 uid_;
+  ::PROTOBUF_NAMESPACE_ID::int32 sex_;
+  ::PROTOBUF_NAMESPACE_ID::int32 avatar_;
+  ::PROTOBUF_NAMESPACE_ID::int32 voice_;
+  ::PROTOBUF_NAMESPACE_ID::int32 seatid_;
+  ::PROTOBUF_NAMESPACE_ID::int32 robot_;
+  friend struct ::TableStruct_login_2eproto;
+};
+// -------------------------------------------------------------------
+
 class Heart PROTOBUF_FINAL :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:proto.login.Heart) */ {
  public:
@@ -699,7 +948,7 @@ class Heart PROTOBUF_FINAL :
                &_Heart_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    4;
 
   friend void swap(Heart& a, Heart& b) {
     a.Swap(&b);
@@ -848,7 +1097,7 @@ class Voice PROTOBUF_FINAL :
                &_Voice_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    5;
 
   friend void swap(Voice& a, Voice& b) {
     a.Swap(&b);
@@ -1186,37 +1435,40 @@ inline void Login::set_reconnect(bool value) {
   // @@protoc_insertion_point(field_set:proto.login.Login.reconnect)
 }
 
-// repeated .proto.game.Player player_info = 7;
+// repeated .proto.login.Player player_info = 7;
 inline int Login::_internal_player_info_size() const {
   return player_info_.size();
 }
 inline int Login::player_info_size() const {
   return _internal_player_info_size();
 }
-inline ::proto::game::Player* Login::mutable_player_info(int index) {
+inline void Login::clear_player_info() {
+  player_info_.Clear();
+}
+inline ::proto::login::Player* Login::mutable_player_info(int index) {
   // @@protoc_insertion_point(field_mutable:proto.login.Login.player_info)
   return player_info_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::proto::game::Player >*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::proto::login::Player >*
 Login::mutable_player_info() {
   // @@protoc_insertion_point(field_mutable_list:proto.login.Login.player_info)
   return &player_info_;
 }
-inline const ::proto::game::Player& Login::_internal_player_info(int index) const {
+inline const ::proto::login::Player& Login::_internal_player_info(int index) const {
   return player_info_.Get(index);
 }
-inline const ::proto::game::Player& Login::player_info(int index) const {
+inline const ::proto::login::Player& Login::player_info(int index) const {
   // @@protoc_insertion_point(field_get:proto.login.Login.player_info)
   return _internal_player_info(index);
 }
-inline ::proto::game::Player* Login::_internal_add_player_info() {
+inline ::proto::login::Player* Login::_internal_add_player_info() {
   return player_info_.Add();
 }
-inline ::proto::game::Player* Login::add_player_info() {
+inline ::proto::login::Player* Login::add_player_info() {
   // @@protoc_insertion_point(field_add:proto.login.Login.player_info)
   return _internal_add_player_info();
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::proto::game::Player >&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::proto::login::Player >&
 Login::player_info() const {
   // @@protoc_insertion_point(field_list:proto.login.Login.player_info)
   return player_info_;
@@ -1316,6 +1568,252 @@ inline void Emoji::set_id(::PROTOBUF_NAMESPACE_ID::int32 value) {
 
 // -------------------------------------------------------------------
 
+// Player
+
+// optional int32 uid = 1;
+inline bool Player::_internal_has_uid() const {
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline bool Player::has_uid() const {
+  return _internal_has_uid();
+}
+inline void Player::clear_uid() {
+  uid_ = 0;
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 Player::_internal_uid() const {
+  return uid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 Player::uid() const {
+  // @@protoc_insertion_point(field_get:proto.login.Player.uid)
+  return _internal_uid();
+}
+inline void Player::_internal_set_uid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _has_bits_[0] |= 0x00000002u;
+  uid_ = value;
+}
+inline void Player::set_uid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_uid(value);
+  // @@protoc_insertion_point(field_set:proto.login.Player.uid)
+}
+
+// optional int32 sex = 2;
+inline bool Player::_internal_has_sex() const {
+  bool value = (_has_bits_[0] & 0x00000004u) != 0;
+  return value;
+}
+inline bool Player::has_sex() const {
+  return _internal_has_sex();
+}
+inline void Player::clear_sex() {
+  sex_ = 0;
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 Player::_internal_sex() const {
+  return sex_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 Player::sex() const {
+  // @@protoc_insertion_point(field_get:proto.login.Player.sex)
+  return _internal_sex();
+}
+inline void Player::_internal_set_sex(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _has_bits_[0] |= 0x00000004u;
+  sex_ = value;
+}
+inline void Player::set_sex(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_sex(value);
+  // @@protoc_insertion_point(field_set:proto.login.Player.sex)
+}
+
+// optional int32 avatar = 3;
+inline bool Player::_internal_has_avatar() const {
+  bool value = (_has_bits_[0] & 0x00000008u) != 0;
+  return value;
+}
+inline bool Player::has_avatar() const {
+  return _internal_has_avatar();
+}
+inline void Player::clear_avatar() {
+  avatar_ = 0;
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 Player::_internal_avatar() const {
+  return avatar_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 Player::avatar() const {
+  // @@protoc_insertion_point(field_get:proto.login.Player.avatar)
+  return _internal_avatar();
+}
+inline void Player::_internal_set_avatar(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _has_bits_[0] |= 0x00000008u;
+  avatar_ = value;
+}
+inline void Player::set_avatar(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_avatar(value);
+  // @@protoc_insertion_point(field_set:proto.login.Player.avatar)
+}
+
+// optional string name = 4;
+inline bool Player::_internal_has_name() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool Player::has_name() const {
+  return _internal_has_name();
+}
+inline void Player::clear_name() {
+  name_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& Player::name() const {
+  // @@protoc_insertion_point(field_get:proto.login.Player.name)
+  return _internal_name();
+}
+inline void Player::set_name(const std::string& value) {
+  _internal_set_name(value);
+  // @@protoc_insertion_point(field_set:proto.login.Player.name)
+}
+inline std::string* Player::mutable_name() {
+  // @@protoc_insertion_point(field_mutable:proto.login.Player.name)
+  return _internal_mutable_name();
+}
+inline const std::string& Player::_internal_name() const {
+  return name_.Get();
+}
+inline void Player::_internal_set_name(const std::string& value) {
+  _has_bits_[0] |= 0x00000001u;
+  name_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
+}
+inline void Player::set_name(std::string&& value) {
+  _has_bits_[0] |= 0x00000001u;
+  name_.Set(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:proto.login.Player.name)
+}
+inline void Player::set_name(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  _has_bits_[0] |= 0x00000001u;
+  name_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArena());
+  // @@protoc_insertion_point(field_set_char:proto.login.Player.name)
+}
+inline void Player::set_name(const char* value,
+    size_t size) {
+  _has_bits_[0] |= 0x00000001u;
+  name_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:proto.login.Player.name)
+}
+inline std::string* Player::_internal_mutable_name() {
+  _has_bits_[0] |= 0x00000001u;
+  return name_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline std::string* Player::release_name() {
+  // @@protoc_insertion_point(field_release:proto.login.Player.name)
+  if (!_internal_has_name()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000001u;
+  return name_.ReleaseNonDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void Player::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), name,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:proto.login.Player.name)
+}
+
+// optional int32 voice = 5;
+inline bool Player::_internal_has_voice() const {
+  bool value = (_has_bits_[0] & 0x00000010u) != 0;
+  return value;
+}
+inline bool Player::has_voice() const {
+  return _internal_has_voice();
+}
+inline void Player::clear_voice() {
+  voice_ = 0;
+  _has_bits_[0] &= ~0x00000010u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 Player::_internal_voice() const {
+  return voice_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 Player::voice() const {
+  // @@protoc_insertion_point(field_get:proto.login.Player.voice)
+  return _internal_voice();
+}
+inline void Player::_internal_set_voice(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _has_bits_[0] |= 0x00000010u;
+  voice_ = value;
+}
+inline void Player::set_voice(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_voice(value);
+  // @@protoc_insertion_point(field_set:proto.login.Player.voice)
+}
+
+// optional int32 seatid = 6;
+inline bool Player::_internal_has_seatid() const {
+  bool value = (_has_bits_[0] & 0x00000020u) != 0;
+  return value;
+}
+inline bool Player::has_seatid() const {
+  return _internal_has_seatid();
+}
+inline void Player::clear_seatid() {
+  seatid_ = 0;
+  _has_bits_[0] &= ~0x00000020u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 Player::_internal_seatid() const {
+  return seatid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 Player::seatid() const {
+  // @@protoc_insertion_point(field_get:proto.login.Player.seatid)
+  return _internal_seatid();
+}
+inline void Player::_internal_set_seatid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _has_bits_[0] |= 0x00000020u;
+  seatid_ = value;
+}
+inline void Player::set_seatid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_seatid(value);
+  // @@protoc_insertion_point(field_set:proto.login.Player.seatid)
+}
+
+// optional int32 robot = 7;
+inline bool Player::_internal_has_robot() const {
+  bool value = (_has_bits_[0] & 0x00000040u) != 0;
+  return value;
+}
+inline bool Player::has_robot() const {
+  return _internal_has_robot();
+}
+inline void Player::clear_robot() {
+  robot_ = 0;
+  _has_bits_[0] &= ~0x00000040u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 Player::_internal_robot() const {
+  return robot_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 Player::robot() const {
+  // @@protoc_insertion_point(field_get:proto.login.Player.robot)
+  return _internal_robot();
+}
+inline void Player::_internal_set_robot(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _has_bits_[0] |= 0x00000040u;
+  robot_ = value;
+}
+inline void Player::set_robot(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_robot(value);
+  // @@protoc_insertion_point(field_set:proto.login.Player.robot)
+}
+
+// -------------------------------------------------------------------
+
 // Heart
 
 // optional int64 time = 1;
@@ -1409,6 +1907,8 @@ inline void Voice::set_status(::PROTOBUF_NAMESPACE_ID::int32 value) {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
