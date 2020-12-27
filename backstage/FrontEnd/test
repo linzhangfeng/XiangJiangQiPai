@@ -1,0 +1,10 @@
+http://119.23.221.227/xiaoqiao/
+
+# 本地调试命令
+npm run dev
+
+# 打包正式环境
+npm run build:prod
+
+# 打包预发布环境
+npm run build:stage

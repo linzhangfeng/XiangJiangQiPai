@@ -1,0 +1,22 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "linzhangfeng",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "linzhangfeng",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1"
+  },
+  "dependencies": {
+    "compressing": "^1.5.1",
+    "express": "^4.17.1",
+    "formidable": "^1.2.2",
+    "mysql": "^2.17.1"
+  }
+}

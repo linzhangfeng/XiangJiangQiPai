@@ -8,11 +8,13 @@
   </component>
   <component name="CMakeSettings">
     <configurations>
-      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" ENABLED="true" />
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c71624ef-adf5-4fc4-b8ed-c7f436406746" name="Default Changelist" comment="" />
+    <list default="true" id="c71624ef-adf5-4fc4-b8ed-c7f436406746" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../backstage/FrontEnd/src/views/product-manager/version-list.vue" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -64,6 +66,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="cf.first.check.clang-format" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -74,7 +77,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="sshConsole" />
+    <property name="settings.editor.selected.configurable" value="MakefileSettings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -101,41 +104,12 @@
       <workItem from="1606208360690" duration="16179000" />
       <workItem from="1606360346817" duration="7219000" />
       <workItem from="1607331448706" duration="596000" />
+      <workItem from="1609045564416" duration="2538000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1605078897769">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1605078897769" />
-    <state x="689" y="320" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1606112403376">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="689" y="320" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1606112403376" />
-    <state x="767" y="323" key="FileChooserDialogImpl" timestamp="1606043317760">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="767" y="323" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1606043317760" />
-    <state x="806" y="144" key="SettingsEditor" timestamp="1606208441127">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="806" y="144" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1606208441127" />
-    <state x="619" y="87" width="818" height="804" key="find.popup" timestamp="1606375325333">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="619" y="87" width="818" height="804" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1606375325333" />
-    <state x="470" y="422" width="980" height="212" key="makefile.clean.confirm.dialog" timestamp="1606208364947">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="470" y="422" width="980" height="212" key="makefile.clean.confirm.dialog/0.0.1920.1040@0.0.1920.1040" timestamp="1606208364947" />
-    <state x="616" y="242" key="run.anything.popup" timestamp="1606292388363">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="616" y="242" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1606292388363" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
