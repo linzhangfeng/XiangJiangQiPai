@@ -2,3 +2,4 @@ temp
 packVersion
 local
 *.exe
+node_modules
