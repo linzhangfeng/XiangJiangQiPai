@@ -1,0 +1,54 @@
+syntax = "proto2";
+package proto.game;
+
+//玩家信息
+message GameStart
+{
+  optional int32 bankerId = 1;        //庄家ID
+}
+
+//玩家信息
+message GameScene
+{
+  optional int32 bankerId = 1;                  //庄家ID
+  repeated Player player_info = 2;              //玩家信息
+  optional int32 host_id = 3;                    //房主ID
+  required int32 room_state = 4;                 //房间状态
+  required int32 game_state = 5;                 //游戏状态
+}
+
+//玩家信息
+message Player
+{
+  optional int32 uid = 1;
+  optional int32 sex = 2;
+  optional string avatar = 3;
+  optional string name = 4;
+  optional int32 voice = 5;    //语音状态
+  optional int32 seatid = 6;   //玩家位置
+  optional int32 robot = 7;    //true：机器人
+  optional int32 score = 8;    //分数
+  optional int32 ready = 9;    //0:未准备   1:已准备
+  optional int32 disband = 10; //1:同意   2:不同意
+}
+
+
+//玩家信息
+message GameEnd
+{
+  optional int32 bankerId = 1;        //庄家ID
+}
+
+//玩家解散
+message GameDisbandResult
+{
+  optional int32 result = 1;        //1:结算成功  2:解散失败
+}
+
+//玩家解散
+message GameDisband
+{
+  optional int32 disband_id = 1;         //解散发起人ID
+  optional int32 seatid = 2;            //庄家ID
+  optional int32 state = 3;             //1:同意  2：反对
+}

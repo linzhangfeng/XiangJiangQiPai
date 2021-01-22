@@ -2,4 +2,9 @@ temp
 packVersion
 local
 *.exe
+*.idea
 node_modules
+library
+local
+build
+OutPut

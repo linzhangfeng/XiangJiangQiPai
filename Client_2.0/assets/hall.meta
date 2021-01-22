@@ -1,0 +1,20 @@
+{
+  "ver": "1.1.2",
+  "uuid": "adc958c5-5b58-4eff-ab50-22608384fe23",
+  "isBundle": false,
+  "bundleName": "hall",
+  "priority": "10",
+  "compressionType": {
+    "android": "default"
+  },
+  "optimizeHotUpdate": {
+    "android": false
+  },
+  "inlineSpriteFrames": {
+    "android": false
+  },
+  "isRemoteBundle": {
+    "android": false
+  },
+  "subMetas": {}
+}
