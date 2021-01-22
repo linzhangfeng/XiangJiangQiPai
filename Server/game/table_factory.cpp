@@ -10,7 +10,7 @@ using namespace std;
 
 shared_ptr <Table> TableFactory::CreateTable(int game_type) {
     switch (game_type) {
-        case 1000: {
+        case 1001: {
             return shared_ptr<Table>(new CTableSheTiQi);
         }
         default:

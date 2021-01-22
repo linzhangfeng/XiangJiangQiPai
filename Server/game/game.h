@@ -17,15 +17,20 @@ public:
     void HandleClientMsg(std::shared_ptr <CWsClient> pclient, int cmd, const char *data, int length);
 
     //客户端登陆
-    void hand_client_login(std::shared_ptr <CWsClient> pclient, const char *data, int length);
+    void handler_client_login(std::shared_ptr <CWsClient> pclient, const char *data, int length);
 
     //客户端心跳
-    void hand_client_heart(std::shared_ptr <CWsClient> pclient, const char *data, int length);
+    void handler_client_heart(std::shared_ptr <CWsClient> pclient, const char *data, int length);
+
+    void send(int uid, int cmd, google::protobuf::Message &msg);
+
+public:
+    std::unordered_map<int, std::shared_ptr<CWsClient>> getMapClient();
+
+    void deleteTable(int roomid, std::vector<int> vec);
 
 private:
     Game();
-
-    void send(int uid, int cmd, google::protobuf::Message& msg);
 
     boost::asio::steady_timer m_time_up_users;
     std::unique_ptr <TableFactory> m_ptable_factory;

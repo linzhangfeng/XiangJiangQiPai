@@ -18,8 +18,9 @@ extern boost::asio::io_context g_ioc;
 
 
 Game::Game() :
-        m_ptable_factory(new TableFactory),
-        m_time_up_users(g_ioc) {
+        m_time_up_users(g_ioc),
+        m_ptable_factory(new TableFactory)
+        {
 }
 
 Game &Game::GetInstance() {
@@ -34,7 +35,7 @@ void Game::Init() {
 
 void Game::send(int uid, int cmd, google::protobuf::Message &msg) {
     if (m_map_client.find(uid) == m_map_client.end()) {
-        g_log.info("uid:%d not find ", uid);
+        g_log.info("uid:%d not find \n", uid);
         return;
     }
 
@@ -51,7 +52,7 @@ void Game::send(int uid, int cmd, google::protobuf::Message &msg) {
 }
 
 
-void Game::hand_client_login(std::shared_ptr <CWsClient> pclient, const char *data, int length) {
+void Game::handler_client_login(std::shared_ptr <CWsClient> pclient, const char *data, int length) {
     proto::login::Login msg;
     if (!msg.ParseFromArray(data, length)) {
         g_log.info("parse error\n");
@@ -62,14 +63,14 @@ void Game::hand_client_login(std::shared_ptr <CWsClient> pclient, const char *da
         !msg.has_uid() ||
         !msg.has_gameid() ||
         !msg.has_roomid()) {
-        g_log.error("proto::login::Login illegal data");
+        g_log.error("proto::login::Login illegal data\n");
         pclient->Close();
         return;
     }
 
     int gameid = msg.gameid();
     if (gameid != Config::GetInstance().GetGameid()) {
-        g_log.error("server gameid:%d	recv gameid:%d", Config::GetInstance().GetGameid(), gameid);
+        g_log.error("server gameid:%d	recv gameid:%d\n", Config::GetInstance().GetGameid(), gameid);
         return;
     }
     pclient->SetUid(msg.uid());
@@ -81,10 +82,10 @@ void Game::hand_client_login(std::shared_ptr <CWsClient> pclient, const char *da
 
     //登录成功
     proto::login::LoginAck ack;
-    ack.set_code(1);
-    pclient->Send(SERVER_LOGIN_ACK, ack);
+
 
     int roomid = pclient->GetRoomid();
+    bool isHost = false;
     if (m_map_table.find(roomid) == m_map_table.end()) {
         g_log.info("create new roomid:%d\n", roomid);
         auto ptable = m_ptable_factory->CreateTable(pclient->GetGameid());
@@ -94,27 +95,51 @@ void Game::hand_client_login(std::shared_ptr <CWsClient> pclient, const char *da
         }
         ptable->SetRoomid(roomid);
         m_map_table[roomid] = ptable;
+        isHost = true;
     }
+
+    //创建座位ID
+    int seatId = m_map_table[roomid]->createSeatId(pclient->GetUid());
+    if (seatId == -1) {
+        g_log.error("The room is full\n");
+        //发送登录失败消息
+        ack.set_code(-1);
+        pclient->Send(SERVER_LOGIN_ACK, ack);
+        pclient->Close();
+        return;
+    }
+
+    if (isHost) m_map_table[roomid]->SetHostid(seatId);
+
+    //添加用户数据
+    if (m_map_client[pclient->GetUid()])m_map_client[pclient->GetUid()]->Close();
+    m_map_client[pclient->GetUid()] = pclient;
+
+    m_map_table[roomid]->setPlayer(seatId, pclient);
+
+    ack.set_code(1);
+    pclient->Send(SERVER_LOGIN_ACK, ack);
+
     m_map_table[roomid]->handler_client_msg(pclient->GetUid(), CLIENT_LOGIN, data, length, pclient);
 }
 
-void Game::hand_client_heart(std::shared_ptr <CWsClient> pclient, const char *data, int length) {
+void Game::handler_client_heart(std::shared_ptr <CWsClient> pclient, const char *data, int length) {
 
 }
 
 void Game::HandleClientMsg(std::shared_ptr <CWsClient> pclient, int cmd, const char *data, int length) {
     if (cmd == CLIENT_LOGIN) {
-        hand_client_login(pclient, data, length);
+        handler_client_login(pclient, data, length);
         return;
     }
     if (cmd == CLIENT_HEART) {
-        hand_client_heart(pclient, data, length);
+        handler_client_heart(pclient, data, length);
         return;
     }
 
     g_log.info("cmd:%d uid:%d\n", cmd, pclient->GetUid());
 
-//    int uid = pclient->GetUid();
+    int uid = pclient->GetUid();
 //    auto puser = GetUser(uid);
 //    if (!puser) {
 //        g_log.info("not find uid:%d\n", uid);
@@ -127,5 +152,22 @@ void Game::HandleClientMsg(std::shared_ptr <CWsClient> pclient, int cmd, const c
         return;
     }
 
-//    m_map_table[roomid]->HandleClientMsg(uid, cmd, data, length);
+    m_map_table[roomid]->handler_client_msg(uid, cmd, data, length, pclient);
+}
+
+std::unordered_map<int, std::shared_ptr<CWsClient>> Game::getMapClient() {
+    return m_map_client;
+}
+
+void Game::deleteTable(int roomid, std::vector<int> vec) {
+    m_map_table.erase(roomid);
+    g_log.info("left table_size:%d\n", m_map_table.size());
+    for (const auto &ele : m_map_table) {
+        g_log.info("roomid:%d\n", ele.first);
+    }
+
+    for (auto ele : vec) {
+        m_map_client.erase(ele);
+    }
+    g_log.info("left user_size:%d	\n", m_map_client.size());
 }

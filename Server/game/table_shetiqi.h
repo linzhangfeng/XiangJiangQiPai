@@ -18,9 +18,9 @@ protected:
 
     virtual void GameStart() override;
 
-    virtual void SendGameStart() override;
+    virtual void sendGameStart() override;
 
-    virtual void SendGameSence(int charid) override;
+    virtual void sendGameScene(int charid) override;
 };
 
 #endif

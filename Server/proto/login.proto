@@ -1,73 +1,80 @@
 syntax = "proto2";
 package proto.login;
 
-message ReqLogin
+message Login
 {
-	optional int32 uid = 1;					//uid
-	optional int32 roomid = 2;				//房间号
-	optional string skey = 3;			
-	optional int32 gameid = 4;				//游戏类型，根据此类型创建桌子类型
-	optional bool voice = 5;				//语音
-	optional bool reconnect = 6;			//断线重连需要赋值true
+  optional int32 uid = 1;           //uid
+  optional int32 roomid = 2;        //房间号
+  optional string skey = 3;
+  optional int32 gameid = 4;        //游戏类型，根据此类型创建桌子类型
+  optional bool voice = 5;          //语音
+  optional bool reconnect = 6;      //断线重连需要赋值true
 }
 
-//牌桌信息
-message AckTableInfo
+message LoginAck
 {
-	required int32 seatid = 1; 		            //玩家的椅子id
-	optional int32 state = 2;	                //游戏状态
-	repeated Player players = 5;                //桌子上的玩家
-	optional int32 cardPoolNums = 7;            //牌池数量
-	optional int32 game_player = 10;			//人数
+  optional int32 code = 1;
 }
 
-//上桌成功
-message  AckUpTableSuccess
+message LogoutAck
 {
-    required Player player = 1;	                //所有玩家基础信息
-}
-
-//下桌成功返回
-message AckDownTableSuccess
-{
-    required int32 uid = 1;
-	optional int32 seatid = 2;
-	optional int32 money = 3;
-}
-
-
-message AckLogin
-{
-	optional int32 code = 1;			//404	:房间不存在
+  optional int32 seatid = 1;
 }
 
 
 message Emoji
 {
-	optional int32 seatid = 1;
-	optional int32 id = 2;
-}
-
-//玩家信息
-message Player
-{
-	optional int32 uid = 1;
-	optional int32 sex = 2;
-	optional int32 avatar = 3;
-	optional string name = 4;
-	optional int32 voice = 5;		//语音状态
-	optional int32 seatid = 6;		//玩家位置
-	optional int32  robot = 7;		//true：机器人
+  optional int32 seatid = 1;
+  optional int32 id = 2;
 }
 
 message Heart
 {
-	optional int64 time = 1; 
+  optional int64 time = 1;
 }
 
-//声音上报 下发
+
+//玩家信息
+message Player
+{
+  optional int32 uid = 1;
+  optional int32 sex = 2;
+  optional string avatar = 3;
+  optional string name = 4;
+  optional int32 voice = 5;    //语音状态
+  optional int32 seatid = 6;   //玩家位置
+  optional int32 robot = 7;    //true：机器人
+  optional int32 score = 8;    //分数
+  optional int32 ready = 9;    //0:未准备   1:已准备
+  optional int32 disband = 10; //1:同意   2:不同意
+}
+
+message UpTable
+{
+  optional int32 seatid = 1;    //玩家位置
+  optional Player player = 2;        //玩家基础信息
+}
+
+message DownTable
+{
+  optional int32 seatid = 1;    //玩家位置
+}
+
 message Voice
 {
-	optional int32 charid = 1;
-	optional int32 status = 2;		//1:开启 
+  optional int32 charid = 1;
+  optional int32 status = 2;    //1:开启
+}
+
+//准备,取消准备
+message Ready
+{
+  optional int32 seatid = 1;
+  optional bool isReady = 2;  //准备:true   取消准备:false
+}
+
+//解散广播
+message DisbandRoom
+{
+  optional int32 bankerId = 1;        //庄家ID
 }

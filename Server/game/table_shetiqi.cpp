@@ -1,7 +1,6 @@
 #include "table_shetiqi.h"
 #include "../common/common.h"
 #include "../common/macros.h"
-#include "../proto/shetiqi.pb.h"
 #include "../proto/proto.h"
 #include <random>
 #include <chrono>
@@ -24,12 +23,11 @@ void CTableSheTiQi::GameStart() {
     Table::GameStart();
 }
 
-void CTableSheTiQi::SendGameStart() {
+void CTableSheTiQi::sendGameStart() {
 
 }
 
-void CTableSheTiQi::SendGameSence(int charid) {
-
-
+void CTableSheTiQi::sendGameScene(int charid) {
+    Table::sendGameScene(charid);
 }
 

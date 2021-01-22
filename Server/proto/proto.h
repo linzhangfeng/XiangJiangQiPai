@@ -2,119 +2,35 @@
 #define PROTO_H
 
 
-enum ServerCMD
-{
-	SERVER_LOGIN_ACK = 10000,		//检测 skey
-	SERVER_SENCE = 10001,			//游戏场景（检验登录后，直接发送场景）
-	SERVER_GAME_END = 10002,		//游戏结束
-	SERVER_EMOJI = 10003,			//服务器转发 客户端的表情消息
-	SERVER_START = 10004,			//游戏开始
-	SERVER_HEART = 10005,			//心跳
-
-	SERVER_GIVE_UP = 10006,			//认输
-	SERVER_PEACE = 10007,			//求和
-
-	SERVER_MATCH_ACK = 10010,		//匹配返回结果
-	SERVER_VOICE = 10012,			//玩家voice状态
-
-
-
-	//特定游戏11000 开始
-	//蛇梯棋
-	SERVER_SHETIQI_SHAIZI = 11000,		//骰子信息
-	SERVER_ENTER_SHAIZI = 11001,		//轮到玩家打骰子
-
-	//方块拼拼
-	SERVER_FANGKUAI_SCORE = 11010,		//分数广播
-
-	//赛车
-	SERVER_DRIFT_FRAME = 11020,			//服务器广播帧消息
-
-	//六角拼拼
-	SERVER_LIUJIAO_OPERATE = 11030,			//玩家需要操作
-	SERVER_LIUJIAO_OPERATE_RESULT = 11031,	//玩家操作结果
-	SERVER_LIUJIAO_NEW_PIECE = 11032,			//广播玩家获得新棋子
-	SERVER_LIUJIAO_CUR_CHARID = 11033,			//广播玩家出牌玩家
-
-	//斗兽棋
-	SERVER_DOUSOU_CUR_CHARID = 11040,			//轮到玩家操作
-	SERVER_DOUSOU_OPEN_RESULT = 11041,			//翻开棋子结果
-	SERVER_DOUSOU_MOVE_RESULT = 11042,			//移动棋子结果
-	
-	
-
-	//下落棋
-	SERVER_XIALOUQI_CUR_CHARID = 11050,
-	SERVER_XIALOUQI_OPERATE_RESULT = 11051,
-	SERVER_XIALOUQI_END_ANIMATION = 11052,
-
-	//翻转棋
-	SERVER_FANZHUANQI_CUR_CHARID = 11060,			//发送当前操作玩家
-	SERVER_FANZHUANQI_OPERATE_RESULT = 11051,		//广播玩家操作结果
-
-	//水果拼盘
-	SERVER_SHUIGUOPINPAN_OPERATE_RESULT = 11070,	//玩家操作结果
-
-	//桌球
-	SERVER_ZHUOQIU_OPERATE_RESULT = 11075,	//玩家操作结果
-	SERVER_ZHUOQIU_CHARID_OPERATE = 11076,	//当前操作玩家
-
+enum ServerCMD {
+    SERVER_LOGIN_ACK = 10000,        //登录广播
+    SERVER_SCENE_INFO_UC = 10001,    //场景消息
+    SERVER_GAME_END = 10002,         //游戏结束
+    SERVER_EMOJI = 10003,            //表情广播
+    SERVER_GAME_START = 10004,       //游戏开始
+    SERVER_HEART = 10005,            //心跳
+    SERVER_VOICE = 10012,            //声音广播
+    SERVER_UPTABLE_ACK = 10013,      //上桌广播
+    SERVER_DOWNTABLE_ACK = 10014,    //下桌广播
+    SERVER_READY_ACK = 10015,        //准备状态广播
+    SERVER_LOGOUT_ACK = 10016,       //准备状态广播
+    SERVER_GAME_REQ_DISBAND = 10017,            //发起解散
+    SERVER_GAME_DISBAND_SELECT = 10018,         //发起解散
+    SERVER_GAME_DISBAND_RESUILT = 10019,        //解散结果
 };
 
 
+enum ClientCMD {
+    CLIENT_LOGIN = 1001,            //客户端登录
+    CLIENT_LOGOUT = 1002,           //玩家登出
+    CLIENT_EMOJI = 1003,            //表情
+    CLIENT_HEART = 1004,            //心跳
 
-
-enum ClientCMD
-{
-	CLIENT_LOGIN = 1001,			//客户端登录
-	CLIENT_LOGOUT = 1002,			//玩家登出
-	CLIENT_EMOJI = 1003,			//表情
-	CLIENT_HEART = 1004,			//心跳
-
-
-	CLIENT_VOICE = 1012,			//玩家voice状态
-	
-
-
-
-	//特定游戏5000 开始
-	//蛇梯棋
-	CLIENT_SHETIQI_GETSHAIZI = 5000,		//获取骰子信息
-
-	//方块拼拼
-	CLIENT_FANGKUAI_SCORE = 5010,			//分数上报
-	CLIENT_FANGKUAI_TOUCH_TOP = 5011,		//触顶消息上报
-
-	//赛车
-	CLIENT_DRIFT_FRAME = 5020,			//客户端上报广播帧消息
-	CLIENT_DRIFT_EEND = 5021,			//客户端上报游戏结束消息
-
-	//六角拼拼
-	CLIENT_LIUJIAO_OPERATE = 5030,			//玩家上报操作位置
-
-
-	//斗兽棋
-	CLIENT_DOUSOU_OPEN = 5040,			//翻棋子 上报
-	CLIENT_DOUSOU_MOVE = 5041,			//移动棋子 上报
-	CLIENT_DOUSOU_GIVEUP = 5042,		//认输
-	CLIENT_DOUSOU_PEACE_ASK = 5043,			//求和请求
-	CLIENT_DOUSOU_PEACE_ANSWER = 5044,		//求和应达上报
-
-	//下落棋
-	CLIENT_XIALOUQI_OPERATE = 5050,
-
-	//翻转棋
-	CLIENT_FANZHUANQI_OPERATE = 5060,		//玩家落子上报
-	
-	//水果拼盘
-	CLIENT_SHUIGUOPINPAN_OPERATE = 5070,	//玩家操作水果上报
-
-	//桌球
-	CLIENT_ZHUOQIU_OPERATE = 5075,			//玩家操作上报
-	CLIENT_ZHUOQIU_OPERATE_RESULT = 5076,	//机器人操作结果上报
+    CLIENT_VOICE = 1012,            //玩家voice状态
+    CLIENT_READY = 1013,            //玩家准备
+    CLIENT_REQ_DISBAND = 1014,          //玩家申请解散
+    CLIENT_DISBAND_SELECT = 1015,          //玩家申请解散
 };
-
-
 
 
 #endif

@@ -27,13 +27,13 @@ int main(int argc, char *argv[]) {
     g_log.start("log/tcptest.log",5,0,1,1073741824,50);
 
     int oc;
-    bool is_daemonize = 0;
+//    int is_daemonize = 0;
     string conf_file;
 
     while ((oc = getopt(argc, argv, "Df:")) != -1) {
         switch (oc) {
             case 'D':
-                is_daemonize = 1;
+//                is_daemonize = 1;
                 break;
             case 'f':
                 conf_file = string(optarg);

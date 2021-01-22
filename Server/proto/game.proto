@@ -1,21 +1,41 @@
 syntax = "proto2";
 package proto.game;
-
+import "login.proto";
 
 //玩家信息
 message GameStart
 {
-	optional int32 bankerId = 1;        //庄家ID
+  optional int32 bankerId = 1;        //庄家ID
 }
 
 //玩家信息
 message GameScene
 {
-	optional int32 bankerId = 1;        //庄家ID
+  optional int32 bankerId = 1;                  //庄家ID
+  repeated login.Player player_info = 2;        //玩家信息
+  optional int32 host_id = 3;                    //房主ID
+  required int32 room_state = 4;                 //房间状态
+  required int32 game_state = 5;                 //游戏状态
 }
 
 //玩家信息
 message GameEnd
 {
-	optional int32 bankerId = 1;        //庄家ID
+  optional int32 bankerId = 1;        //庄家ID
 }
+
+//玩家解散
+message GameDisbandResult
+{
+  optional int32 result = 1;            //1:结算成功  2:解散失败
+}
+
+//玩家解散
+message GameDisband
+{
+  optional int32 disband_id = 1;         //解散发起人ID
+  optional int32 seatid = 2;            //庄家ID
+  optional int32 state = 3;             //1:同意  2：反对
+}
+
+

@@ -32,6 +32,7 @@
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
 #include <google/protobuf/unknown_field_set.h>
+#include "login.pb.h"
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
 #define PROTOBUF_INTERNAL_EXPORT_game_2eproto
@@ -47,7 +48,7 @@ struct TableStruct_game_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[1]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[5]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -56,12 +57,28 @@ struct TableStruct_game_2eproto {
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_game_2eproto;
 namespace proto {
 namespace game {
+class GameDisband;
+class GameDisbandDefaultTypeInternal;
+extern GameDisbandDefaultTypeInternal _GameDisband_default_instance_;
+class GameDisbandResult;
+class GameDisbandResultDefaultTypeInternal;
+extern GameDisbandResultDefaultTypeInternal _GameDisbandResult_default_instance_;
+class GameEnd;
+class GameEndDefaultTypeInternal;
+extern GameEndDefaultTypeInternal _GameEnd_default_instance_;
+class GameScene;
+class GameSceneDefaultTypeInternal;
+extern GameSceneDefaultTypeInternal _GameScene_default_instance_;
 class GameStart;
 class GameStartDefaultTypeInternal;
 extern GameStartDefaultTypeInternal _GameStart_default_instance_;
 }  // namespace game
 }  // namespace proto
 PROTOBUF_NAMESPACE_OPEN
+template<> ::proto::game::GameDisband* Arena::CreateMaybeMessage<::proto::game::GameDisband>(Arena*);
+template<> ::proto::game::GameDisbandResult* Arena::CreateMaybeMessage<::proto::game::GameDisbandResult>(Arena*);
+template<> ::proto::game::GameEnd* Arena::CreateMaybeMessage<::proto::game::GameEnd>(Arena*);
+template<> ::proto::game::GameScene* Arena::CreateMaybeMessage<::proto::game::GameScene>(Arena*);
 template<> ::proto::game::GameStart* Arena::CreateMaybeMessage<::proto::game::GameStart>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace proto {
@@ -191,6 +208,176 @@ class GameStart PROTOBUF_FINAL :
   enum : int {
     kBankerIdFieldNumber = 1,
   };
+  // optional int32 banker_id = 1;
+  bool has_banker_id() const;
+  private:
+  bool _internal_has_banker_id() const;
+  public:
+  void clear_banker_id();
+  ::PROTOBUF_NAMESPACE_ID::int32 banker_id() const;
+  void set_banker_id(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_banker_id() const;
+  void _internal_set_banker_id(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:proto.game.GameStart)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::int32 banker_id_;
+  friend struct ::TableStruct_game_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GameScene PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:proto.game.GameScene) */ {
+ public:
+  inline GameScene() : GameScene(nullptr) {};
+  virtual ~GameScene();
+
+  GameScene(const GameScene& from);
+  GameScene(GameScene&& from) noexcept
+    : GameScene() {
+    *this = ::std::move(from);
+  }
+
+  inline GameScene& operator=(const GameScene& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GameScene& operator=(GameScene&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance);
+  }
+  inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const GameScene& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const GameScene* internal_default_instance() {
+    return reinterpret_cast<const GameScene*>(
+               &_GameScene_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    1;
+
+  friend void swap(GameScene& a, GameScene& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GameScene* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GameScene* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline GameScene* New() const final {
+    return CreateMaybeMessage<GameScene>(nullptr);
+  }
+
+  GameScene* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<GameScene>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const GameScene& from);
+  void MergeFrom(const GameScene& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GameScene* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "proto.game.GameScene";
+  }
+  protected:
+  explicit GameScene(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_game_2eproto);
+    return ::descriptor_table_game_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kPlayerInfoFieldNumber = 2,
+    kBankerIdFieldNumber = 1,
+    kHostIdFieldNumber = 3,
+    kHostidFieldNumber = 4,
+  };
+  // repeated .proto.login.Player player_info = 2;
+  int player_info_size() const;
+  private:
+  int _internal_player_info_size() const;
+  public:
+  void clear_player_info();
+  ::proto::login::Player* mutable_player_info(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::proto::login::Player >*
+      mutable_player_info();
+  private:
+  const ::proto::login::Player& _internal_player_info(int index) const;
+  ::proto::login::Player* _internal_add_player_info();
+  public:
+  const ::proto::login::Player& player_info(int index) const;
+  ::proto::login::Player* add_player_info();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::proto::login::Player >&
+      player_info() const;
+
   // optional int32 bankerId = 1;
   bool has_bankerid() const;
   private:
@@ -204,7 +391,185 @@ class GameStart PROTOBUF_FINAL :
   void _internal_set_bankerid(::PROTOBUF_NAMESPACE_ID::int32 value);
   public:
 
-  // @@protoc_insertion_point(class_scope:proto.game.GameStart)
+  // optional int32 host_id = 3;
+  bool has_host_id() const;
+  private:
+  bool _internal_has_host_id() const;
+  public:
+  void clear_host_id();
+  ::PROTOBUF_NAMESPACE_ID::int32 host_id() const;
+  void set_host_id(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_host_id() const;
+  void _internal_set_host_id(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // optional int32 hostid = 4;
+  bool has_hostid() const;
+  private:
+  bool _internal_has_hostid() const;
+  public:
+  void clear_hostid();
+  ::PROTOBUF_NAMESPACE_ID::int32 hostid() const;
+  void set_hostid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_hostid() const;
+  void _internal_set_hostid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:proto.game.GameScene)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::proto::login::Player > player_info_;
+  ::PROTOBUF_NAMESPACE_ID::int32 bankerid_;
+  ::PROTOBUF_NAMESPACE_ID::int32 host_id_;
+  ::PROTOBUF_NAMESPACE_ID::int32 hostid_;
+  friend struct ::TableStruct_game_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GameEnd PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:proto.game.GameEnd) */ {
+ public:
+  inline GameEnd() : GameEnd(nullptr) {};
+  virtual ~GameEnd();
+
+  GameEnd(const GameEnd& from);
+  GameEnd(GameEnd&& from) noexcept
+    : GameEnd() {
+    *this = ::std::move(from);
+  }
+
+  inline GameEnd& operator=(const GameEnd& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GameEnd& operator=(GameEnd&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance);
+  }
+  inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const GameEnd& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const GameEnd* internal_default_instance() {
+    return reinterpret_cast<const GameEnd*>(
+               &_GameEnd_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    2;
+
+  friend void swap(GameEnd& a, GameEnd& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GameEnd* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GameEnd* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline GameEnd* New() const final {
+    return CreateMaybeMessage<GameEnd>(nullptr);
+  }
+
+  GameEnd* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<GameEnd>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const GameEnd& from);
+  void MergeFrom(const GameEnd& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GameEnd* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "proto.game.GameEnd";
+  }
+  protected:
+  explicit GameEnd(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_game_2eproto);
+    return ::descriptor_table_game_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kBankerIdFieldNumber = 1,
+  };
+  // optional int32 bankerId = 1;
+  bool has_bankerid() const;
+  private:
+  bool _internal_has_bankerid() const;
+  public:
+  void clear_bankerid();
+  ::PROTOBUF_NAMESPACE_ID::int32 bankerid() const;
+  void set_bankerid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_bankerid() const;
+  void _internal_set_bankerid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:proto.game.GameEnd)
  private:
   class _Internal;
 
@@ -214,6 +579,334 @@ class GameStart PROTOBUF_FINAL :
   ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::int32 bankerid_;
+  friend struct ::TableStruct_game_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GameDisbandResult PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:proto.game.GameDisbandResult) */ {
+ public:
+  inline GameDisbandResult() : GameDisbandResult(nullptr) {};
+  virtual ~GameDisbandResult();
+
+  GameDisbandResult(const GameDisbandResult& from);
+  GameDisbandResult(GameDisbandResult&& from) noexcept
+    : GameDisbandResult() {
+    *this = ::std::move(from);
+  }
+
+  inline GameDisbandResult& operator=(const GameDisbandResult& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GameDisbandResult& operator=(GameDisbandResult&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance);
+  }
+  inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const GameDisbandResult& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const GameDisbandResult* internal_default_instance() {
+    return reinterpret_cast<const GameDisbandResult*>(
+               &_GameDisbandResult_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    3;
+
+  friend void swap(GameDisbandResult& a, GameDisbandResult& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GameDisbandResult* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GameDisbandResult* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline GameDisbandResult* New() const final {
+    return CreateMaybeMessage<GameDisbandResult>(nullptr);
+  }
+
+  GameDisbandResult* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<GameDisbandResult>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const GameDisbandResult& from);
+  void MergeFrom(const GameDisbandResult& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GameDisbandResult* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "proto.game.GameDisbandResult";
+  }
+  protected:
+  explicit GameDisbandResult(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_game_2eproto);
+    return ::descriptor_table_game_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kResultFieldNumber = 1,
+  };
+  // optional int32 result = 1;
+  bool has_result() const;
+  private:
+  bool _internal_has_result() const;
+  public:
+  void clear_result();
+  ::PROTOBUF_NAMESPACE_ID::int32 result() const;
+  void set_result(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_result() const;
+  void _internal_set_result(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:proto.game.GameDisbandResult)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::int32 result_;
+  friend struct ::TableStruct_game_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GameDisband PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:proto.game.GameDisband) */ {
+ public:
+  inline GameDisband() : GameDisband(nullptr) {};
+  virtual ~GameDisband();
+
+  GameDisband(const GameDisband& from);
+  GameDisband(GameDisband&& from) noexcept
+    : GameDisband() {
+    *this = ::std::move(from);
+  }
+
+  inline GameDisband& operator=(const GameDisband& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GameDisband& operator=(GameDisband&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance);
+  }
+  inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const GameDisband& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const GameDisband* internal_default_instance() {
+    return reinterpret_cast<const GameDisband*>(
+               &_GameDisband_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    4;
+
+  friend void swap(GameDisband& a, GameDisband& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GameDisband* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GameDisband* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline GameDisband* New() const final {
+    return CreateMaybeMessage<GameDisband>(nullptr);
+  }
+
+  GameDisband* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<GameDisband>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const GameDisband& from);
+  void MergeFrom(const GameDisband& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GameDisband* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "proto.game.GameDisband";
+  }
+  protected:
+  explicit GameDisband(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_game_2eproto);
+    return ::descriptor_table_game_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kDisbandidFieldNumber = 1,
+    kSeatidFieldNumber = 2,
+    kStateFieldNumber = 3,
+  };
+  // optional int32 disbandid = 1;
+  bool has_disbandid() const;
+  private:
+  bool _internal_has_disbandid() const;
+  public:
+  void clear_disbandid();
+  ::PROTOBUF_NAMESPACE_ID::int32 disbandid() const;
+  void set_disbandid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_disbandid() const;
+  void _internal_set_disbandid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // optional int32 seatid = 2;
+  bool has_seatid() const;
+  private:
+  bool _internal_has_seatid() const;
+  public:
+  void clear_seatid();
+  ::PROTOBUF_NAMESPACE_ID::int32 seatid() const;
+  void set_seatid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_seatid() const;
+  void _internal_set_seatid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // optional int32 state = 3;
+  bool has_state() const;
+  private:
+  bool _internal_has_state() const;
+  public:
+  void clear_state();
+  ::PROTOBUF_NAMESPACE_ID::int32 state() const;
+  void set_state(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_state() const;
+  void _internal_set_state(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:proto.game.GameDisband)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::int32 disbandid_;
+  ::PROTOBUF_NAMESPACE_ID::int32 seatid_;
+  ::PROTOBUF_NAMESPACE_ID::int32 state_;
   friend struct ::TableStruct_game_2eproto;
 };
 // ===================================================================
@@ -227,37 +920,321 @@ class GameStart PROTOBUF_FINAL :
 #endif  // __GNUC__
 // GameStart
 
-// optional int32 bankerId = 1;
-inline bool GameStart::_internal_has_bankerid() const {
+// optional int32 banker_id = 1;
+inline bool GameStart::_internal_has_banker_id() const {
   bool value = (_has_bits_[0] & 0x00000001u) != 0;
   return value;
 }
-inline bool GameStart::has_bankerid() const {
+inline bool GameStart::has_banker_id() const {
+  return _internal_has_banker_id();
+}
+inline void GameStart::clear_banker_id() {
+  banker_id_ = 0;
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 GameStart::_internal_banker_id() const {
+  return banker_id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 GameStart::banker_id() const {
+  // @@protoc_insertion_point(field_get:proto.game.GameStart.banker_id)
+  return _internal_banker_id();
+}
+inline void GameStart::_internal_set_banker_id(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _has_bits_[0] |= 0x00000001u;
+  banker_id_ = value;
+}
+inline void GameStart::set_banker_id(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_banker_id(value);
+  // @@protoc_insertion_point(field_set:proto.game.GameStart.banker_id)
+}
+
+// -------------------------------------------------------------------
+
+// GameScene
+
+// optional int32 bankerId = 1;
+inline bool GameScene::_internal_has_bankerid() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool GameScene::has_bankerid() const {
   return _internal_has_bankerid();
 }
-inline void GameStart::clear_bankerid() {
+inline void GameScene::clear_bankerid() {
   bankerid_ = 0;
   _has_bits_[0] &= ~0x00000001u;
 }
-inline ::PROTOBUF_NAMESPACE_ID::int32 GameStart::_internal_bankerid() const {
+inline ::PROTOBUF_NAMESPACE_ID::int32 GameScene::_internal_bankerid() const {
   return bankerid_;
 }
-inline ::PROTOBUF_NAMESPACE_ID::int32 GameStart::bankerid() const {
-  // @@protoc_insertion_point(field_get:proto.game.GameStart.bankerId)
+inline ::PROTOBUF_NAMESPACE_ID::int32 GameScene::bankerid() const {
+  // @@protoc_insertion_point(field_get:proto.game.GameScene.bankerId)
   return _internal_bankerid();
 }
-inline void GameStart::_internal_set_bankerid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+inline void GameScene::_internal_set_bankerid(::PROTOBUF_NAMESPACE_ID::int32 value) {
   _has_bits_[0] |= 0x00000001u;
   bankerid_ = value;
 }
-inline void GameStart::set_bankerid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+inline void GameScene::set_bankerid(::PROTOBUF_NAMESPACE_ID::int32 value) {
   _internal_set_bankerid(value);
-  // @@protoc_insertion_point(field_set:proto.game.GameStart.bankerId)
+  // @@protoc_insertion_point(field_set:proto.game.GameScene.bankerId)
+}
+
+// repeated .proto.login.Player player_info = 2;
+inline int GameScene::_internal_player_info_size() const {
+  return player_info_.size();
+}
+inline int GameScene::player_info_size() const {
+  return _internal_player_info_size();
+}
+inline ::proto::login::Player* GameScene::mutable_player_info(int index) {
+  // @@protoc_insertion_point(field_mutable:proto.game.GameScene.player_info)
+  return player_info_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::proto::login::Player >*
+GameScene::mutable_player_info() {
+  // @@protoc_insertion_point(field_mutable_list:proto.game.GameScene.player_info)
+  return &player_info_;
+}
+inline const ::proto::login::Player& GameScene::_internal_player_info(int index) const {
+  return player_info_.Get(index);
+}
+inline const ::proto::login::Player& GameScene::player_info(int index) const {
+  // @@protoc_insertion_point(field_get:proto.game.GameScene.player_info)
+  return _internal_player_info(index);
+}
+inline ::proto::login::Player* GameScene::_internal_add_player_info() {
+  return player_info_.Add();
+}
+inline ::proto::login::Player* GameScene::add_player_info() {
+  // @@protoc_insertion_point(field_add:proto.game.GameScene.player_info)
+  return _internal_add_player_info();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::proto::login::Player >&
+GameScene::player_info() const {
+  // @@protoc_insertion_point(field_list:proto.game.GameScene.player_info)
+  return player_info_;
+}
+
+// optional int32 host_id = 3;
+inline bool GameScene::_internal_has_host_id() const {
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline bool GameScene::has_host_id() const {
+  return _internal_has_host_id();
+}
+inline void GameScene::clear_host_id() {
+  host_id_ = 0;
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 GameScene::_internal_host_id() const {
+  return host_id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 GameScene::host_id() const {
+  // @@protoc_insertion_point(field_get:proto.game.GameScene.host_id)
+  return _internal_host_id();
+}
+inline void GameScene::_internal_set_host_id(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _has_bits_[0] |= 0x00000002u;
+  host_id_ = value;
+}
+inline void GameScene::set_host_id(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_host_id(value);
+  // @@protoc_insertion_point(field_set:proto.game.GameScene.host_id)
+}
+
+// optional int32 hostid = 4;
+inline bool GameScene::_internal_has_hostid() const {
+  bool value = (_has_bits_[0] & 0x00000004u) != 0;
+  return value;
+}
+inline bool GameScene::has_hostid() const {
+  return _internal_has_hostid();
+}
+inline void GameScene::clear_hostid() {
+  hostid_ = 0;
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 GameScene::_internal_hostid() const {
+  return hostid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 GameScene::hostid() const {
+  // @@protoc_insertion_point(field_get:proto.game.GameScene.hostid)
+  return _internal_hostid();
+}
+inline void GameScene::_internal_set_hostid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _has_bits_[0] |= 0x00000004u;
+  hostid_ = value;
+}
+inline void GameScene::set_hostid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_hostid(value);
+  // @@protoc_insertion_point(field_set:proto.game.GameScene.hostid)
+}
+
+// -------------------------------------------------------------------
+
+// GameEnd
+
+// optional int32 bankerId = 1;
+inline bool GameEnd::_internal_has_bankerid() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool GameEnd::has_bankerid() const {
+  return _internal_has_bankerid();
+}
+inline void GameEnd::clear_bankerid() {
+  bankerid_ = 0;
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 GameEnd::_internal_bankerid() const {
+  return bankerid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 GameEnd::bankerid() const {
+  // @@protoc_insertion_point(field_get:proto.game.GameEnd.bankerId)
+  return _internal_bankerid();
+}
+inline void GameEnd::_internal_set_bankerid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _has_bits_[0] |= 0x00000001u;
+  bankerid_ = value;
+}
+inline void GameEnd::set_bankerid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_bankerid(value);
+  // @@protoc_insertion_point(field_set:proto.game.GameEnd.bankerId)
+}
+
+// -------------------------------------------------------------------
+
+// GameDisbandResult
+
+// optional int32 result = 1;
+inline bool GameDisbandResult::_internal_has_result() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool GameDisbandResult::has_result() const {
+  return _internal_has_result();
+}
+inline void GameDisbandResult::clear_result() {
+  result_ = 0;
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 GameDisbandResult::_internal_result() const {
+  return result_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 GameDisbandResult::result() const {
+  // @@protoc_insertion_point(field_get:proto.game.GameDisbandResult.result)
+  return _internal_result();
+}
+inline void GameDisbandResult::_internal_set_result(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _has_bits_[0] |= 0x00000001u;
+  result_ = value;
+}
+inline void GameDisbandResult::set_result(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_result(value);
+  // @@protoc_insertion_point(field_set:proto.game.GameDisbandResult.result)
+}
+
+// -------------------------------------------------------------------
+
+// GameDisband
+
+// optional int32 disbandid = 1;
+inline bool GameDisband::_internal_has_disbandid() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool GameDisband::has_disbandid() const {
+  return _internal_has_disbandid();
+}
+inline void GameDisband::clear_disbandid() {
+  disbandid_ = 0;
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 GameDisband::_internal_disbandid() const {
+  return disbandid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 GameDisband::disbandid() const {
+  // @@protoc_insertion_point(field_get:proto.game.GameDisband.disbandid)
+  return _internal_disbandid();
+}
+inline void GameDisband::_internal_set_disbandid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _has_bits_[0] |= 0x00000001u;
+  disbandid_ = value;
+}
+inline void GameDisband::set_disbandid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_disbandid(value);
+  // @@protoc_insertion_point(field_set:proto.game.GameDisband.disbandid)
+}
+
+// optional int32 seatid = 2;
+inline bool GameDisband::_internal_has_seatid() const {
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline bool GameDisband::has_seatid() const {
+  return _internal_has_seatid();
+}
+inline void GameDisband::clear_seatid() {
+  seatid_ = 0;
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 GameDisband::_internal_seatid() const {
+  return seatid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 GameDisband::seatid() const {
+  // @@protoc_insertion_point(field_get:proto.game.GameDisband.seatid)
+  return _internal_seatid();
+}
+inline void GameDisband::_internal_set_seatid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _has_bits_[0] |= 0x00000002u;
+  seatid_ = value;
+}
+inline void GameDisband::set_seatid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_seatid(value);
+  // @@protoc_insertion_point(field_set:proto.game.GameDisband.seatid)
+}
+
+// optional int32 state = 3;
+inline bool GameDisband::_internal_has_state() const {
+  bool value = (_has_bits_[0] & 0x00000004u) != 0;
+  return value;
+}
+inline bool GameDisband::has_state() const {
+  return _internal_has_state();
+}
+inline void GameDisband::clear_state() {
+  state_ = 0;
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 GameDisband::_internal_state() const {
+  return state_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 GameDisband::state() const {
+  // @@protoc_insertion_point(field_get:proto.game.GameDisband.state)
+  return _internal_state();
+}
+inline void GameDisband::_internal_set_state(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _has_bits_[0] |= 0x00000004u;
+  state_ = value;
+}
+inline void GameDisband::set_state(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_state(value);
+  // @@protoc_insertion_point(field_set:proto.game.GameDisband.state)
 }
 
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 
 // @@protoc_insertion_point(namespace_scope)
 
