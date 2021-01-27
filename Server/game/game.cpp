@@ -166,8 +166,8 @@ void Game::deleteTable(int roomid, std::vector<int> vec) {
         g_log.info("roomid:%d\n", ele.first);
     }
 
-    for (auto ele : vec) {
-        m_map_client.erase(ele);
-    }
+//    for (auto ele : vec) {
+//        m_map_client.erase(ele);
+//    }
     g_log.info("left user_size:%d	\n", m_map_client.size());
 }

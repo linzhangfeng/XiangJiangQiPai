@@ -8,7 +8,7 @@
   </component>
   <component name="CMakeSettings">
     <configurations>
-      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" ENABLED="true" />
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
     </configurations>
   </component>
   <component name="ChangeListManager">
@@ -89,9 +89,9 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
   </component>
@@ -122,6 +122,7 @@
       <workItem from="1611026931878" duration="37442000" />
       <workItem from="1611150440302" duration="30647000" />
       <workItem from="1609045564416" duration="2538000" />
+      <workItem from="1611463606822" duration="26061000" />
     </task>
     <servers />
   </component>
@@ -145,22 +146,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="806" y="144" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1611027036320" />
-    <state x="839" y="167" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1611151665608">
+    <state x="839" y="167" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1611499431233">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="839" y="167" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1611151665608" />
-    <state x="619" y="87" width="818" height="804" key="find.popup" timestamp="1611299828138">
+    <state x="839" y="167" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1611499431233" />
+    <state x="619" y="87" width="818" height="804" key="find.popup" timestamp="1611666364659">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="619" y="87" width="818" height="804" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1611299828138" />
+    <state x="619" y="87" width="818" height="804" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1611666364659" />
     <state x="470" y="422" width="980" height="212" key="makefile.clean.confirm.dialog" timestamp="1606208364947">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="470" y="422" width="980" height="212" key="makefile.clean.confirm.dialog/0.0.1920.1040@0.0.1920.1040" timestamp="1606208364947" />
-    <state x="616" y="242" key="run.anything.popup" timestamp="1606292388363">
+    <state x="616" y="242" key="run.anything.popup" timestamp="1611670890971">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="616" y="242" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1606292388363" />
+    <state x="616" y="242" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1611670890971" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

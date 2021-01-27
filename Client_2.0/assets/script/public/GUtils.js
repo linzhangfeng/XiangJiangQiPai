@@ -287,26 +287,6 @@ window.GUtils = {
         btn.on('click', callback, this);
     },
     openPage(prefabPath, callback, boundleName) {
-        // cc.loader.loadRes(prefabPath, cc.Prefab, function (err, prefab) {
-        //     if (prefab && !err) {
-        //         //实例化预制组件
-        //         let nodePrefab = cc.instantiate(prefab);
-        //         let nodeCanvas = cc.director.getScene().getChildByName('Canvas');
-        //         nodeCanvas.addChild(nodePrefab);
-        //
-        //         //回调
-        //         if (callback && callback != undefined) {
-        //             callback(err, nodePrefab);
-        //         }
-        //         console.log("%c" + "openPage:" + prefabPath, "color:green");
-        //     } else {
-        //         //回调
-        //         if (callback && callback != undefined) {
-        //             callback(err, prefab);
-        //         }
-        //     }
-        // });
-
         cc.assetManager.loadBundle(boundleName, null, (err, bundle) => {
             //这里存一下bundle，在bundle场景销毁的时候释放，保证下次bundle热更之后引用的资源都是最新的
             bundle.load(prefabPath, (err, sceneAsset) => {
@@ -331,10 +311,30 @@ window.GUtils = {
             });
         });
     },
+    loadBoundleRes(prefabPath, callback, boundleName) {
+        cc.assetManager.loadBundle(boundleName, null, (err, bundle) => {
+            bundle.load(prefabPath, (err, sceneAsset) => {
+                if (sceneAsset && !err) {
+                    //回调
+                    if (callback && callback != undefined) callback(err, sceneAsset);
+                    console.log("%c" + "loadBoundleRes:" + prefabPath, "color:green");
+                } else {
+                    //回调
+                    if (callback && callback != undefined) callback(err, sceneAsset);
+                }
+            });
+        });
+    },
     showTxtTip(txt) {
         this.openPage(PrefabPath.SystemLabel.path, function (err, nodePrefab) {
             let js = nodePrefab.getComponent("SystemLabel");
             js.showTxtTip(txt);
         }, PrefabPath.SystemLabel.bundle);
-    }
+    },
+    hideAllChildren(node) {
+        for (let i = 0; i < node.children.length; i++) {
+            let nodeChild = node.children[i];
+            nodeChild.active = false;
+        }
+    },
 };

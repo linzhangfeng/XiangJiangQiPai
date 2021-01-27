@@ -1,5 +1,7 @@
 module.exports = cc.Class({
-    rootNode: null,
+    properties:{
+        rootNode: null,
+    },
     ctor() {
         console.log("DDZ_Table");
         this.jsDisband = null;
@@ -104,8 +106,65 @@ module.exports = cc.Class({
             case  CMD.SERVER_GAME_DISBAND_RESUILT:
                 this.handler_server_disband_result(jpacket);
                 break;
+            case  CMD.SERVER_GAME_START:
+                this.handler_server_game_start(jpacket);
+                break;
+            case  CMD.SERVER_GAME_SEND_CARD:
+                this.handler_server_send_card(jpacket);
+                break;
+            case  LANDLORD_CMD.SERVER_ROBDISBAND_ACK:
+                this.handler_server_rob_landlord_ack(jpacket);
+                break;
+            case  LANDLORD_CMD.SERVER_ROBDISBAND_RESULT:
+                this.handler_server_rob_landlord_result(jpacket);
+                break;
         }
         return true;
+    },
+    handler_server_rob_landlord_result(data) {
+        console.log('%c' + "handler_server_rob_landlord_result:", 'color:red');
+        let seatid = data.seatid;
+        let rod_value = data.rod_value;
+        let public_cards = data.public_cards;
+        let pos = cc.ddz.Model.getPosBySeatid(seatid);
+        cc.ddz.Model.seatid = seatid;
+        cc.ddz.Model.robScore = rod_value;
+
+        cc.ddz.CardsMgr.setPublicCardsValue(public_cards);
+        cc.ddz.CardsMgr.updatePublicCards(public_cards);
+
+        let jsPlayer = cc.ddz.PlayerMgr.getJsPlayerByPos(pos);
+        jsPlayer.setLandlordIconVis(true);
+    },
+
+    handler_server_rob_landlord_ack(data) {
+        console.log('%c' + "handler_server_rob_landlord:", 'color:red');
+        let seatid = data.seatid;
+        let operatorid = data.operatorid;
+        let rod_values = data.rod_values;
+        let rod_value = data.rod_value;
+        let isfinish = data.isfinish;
+        let isFirst = (seatid == operatorid);
+        let pos = cc.ddz.Model.getPosBySeatid(seatid);
+        if (cc.ddz.Model.isMyPlayer(operatorid) && !isfinish) {
+            cc.ddz.ActionMgr.setOperator(rod_values, isFirst);
+        }
+        if (!isFirst) cc.ddz.TipMgr.showRobScoreTxt(pos, rod_value, rod_values.length == 3);
+    },
+    handler_server_send_card(data) {
+        console.log('%c' + "handler_server_send_card:", 'color:red');
+        let changeableCardsLen = data.changeableCardsLen;
+        let changeableCards = data.changeableCards;
+        cc.ddz.CardsMgr.setHandCardsValue(changeableCards);
+        cc.ddz.CardsMgr.updateHandcards(changeableCards);
+    },
+
+    handler_server_game_start(data) {
+        console.log('%c' + "handler_server_game_start:", 'color:red');
+        //修改房间状态
+        cc.ddz.Model.roomState = RoomState.RoomPlaying;
+        //修改r游戏状态
+        cc.ddz.Model.gameState = GameState.GamePlaying;
     },
 
     handler_server_disband_result(data) {
@@ -119,6 +178,7 @@ module.exports = cc.Class({
             GUtils.showTxtTip("解散成功，3秒后自动退出房间");
         } else if (result == 2) {
             GUtils.showTxtTip("解散失败");
+            cc.ddz.Model.resetDisbandData();
         }
     },
 

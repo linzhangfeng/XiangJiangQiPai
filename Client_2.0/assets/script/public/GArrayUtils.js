@@ -113,7 +113,7 @@ memset([], len, struct)
 memset([], 0, len0, len1)
 memset([], len0, len1, struct)
  */
-window.memset = function () {
+window.memset = function (arr, value, len) {
     //不是数组
     if (!IsArray(arguments[0])) {
         YQYAssertAlert(false, "memset.arguments.aryDst is not array");

@@ -37,9 +37,12 @@ cc.Class({
 
         let Model = require("DDZ_Model");
         cc.ddz.Model = new Model();
+
+        let Net = require("DDZ_Net");
+        cc.ddz.Net = new Net();
     },
     start() {
-        cc.ddz.Table.init(this);
+        // cc.ddz.Table.init(this);
     },
     onDestroy() {
 

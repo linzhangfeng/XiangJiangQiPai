@@ -5,7 +5,14 @@ import "login.proto";
 //玩家信息
 message GameStart
 {
-  optional int32 bankerId = 1;        //庄家ID
+  optional int32 banker_id = 1;        //庄家ID
+}
+
+//手牌
+message HandCards
+{
+  required int32      changeableCardsLen = 1;
+  repeated int32      changeableCards = 2;
 }
 
 //玩家信息

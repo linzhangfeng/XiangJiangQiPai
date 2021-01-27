@@ -1,0 +1,21 @@
+syntax = "proto2";
+package proto.landlord;
+
+//开始抢地主
+message RobLandlord
+{
+  required int32 seatid = 1;         //座位id
+  required int32 operatorid = 2;     //当前操作id
+  repeated int32 rod_values = 3;      //可以抢的倍率
+  required int32 rod_value = 4;          //用户抢的赔率
+  required bool isfinish = 5;        //抢地主是否完成
+}
+
+//广播抢地主结果
+message AckRobLandlordResult
+{
+  required int32 seatid = 1;         //座位id
+  required int32 rod_value = 2;          //最高赔率
+}
+
+

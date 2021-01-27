@@ -19,6 +19,9 @@ window.GTcp = {
             }, {
                 files: 'game.proto',
                 package: 'proto.game'
+            }, {
+                files: 'landlord.proto',
+                package: 'proto.landlord'
             }];
         ProtoTool.loadFiles(protoFilesbfu, cb);
     },

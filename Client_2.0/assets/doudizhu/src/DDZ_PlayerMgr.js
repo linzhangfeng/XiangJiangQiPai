@@ -8,12 +8,23 @@ module.exports = cc.Class({
         this.arrNodePlayer = []
 
         for (let i = 0; i < cc.ddz.Model.Play_num; i++) {
-            let nodePlayer = cc.find("Player_" + i, this.rootNode);
-            this.arrNodePlayer[i] = nodePlayer;
-            let jsPlayer = this.getJsPlayer(nodePlayer);
-            jsPlayer.initData(i);
-            nodePlayer.active = false;
+            let nodePlayerParent = cc.find("Player_" + i, this.rootNode);
+            nodePlayerParent.destroyAllChildren();
         }
+
+        GModel.stopRecv = true;
+        GUtils.loadBoundleRes(PrefabPath.Player.path, function (err, prefab) {
+            for (let i = 0; i < cc.ddz.Model.Play_num; i++) {
+                let nodePlayerParent = cc.find("Player_" + i, this.rootNode);
+                let nodePlayer = cc.instantiate(prefab);
+                nodePlayerParent.addChild(nodePlayer);
+                this.arrNodePlayer[i] = nodePlayer;
+                nodePlayer.active = false;
+                let jsPlayer = this.getJsPlayer(nodePlayer);
+                jsPlayer.init(i);
+            }
+            GModel.stopRecv = false;
+        }.bind(this), PrefabPath.Player.bundle)
     },
 
     upTable(playerData) {
@@ -33,9 +44,15 @@ module.exports = cc.Class({
         return jsPlayer;
     },
 
+    getJsPlayerByPos(pos) {
+        return this.getJsPlayer(this.arrNodePlayer[pos]);
+    },
+
     setReadyState(seatid, state) {
         let pos = cc.ddz.Model.getPosBySeatid(seatid);
         let jsPlayer = this.getJsPlayer(this.arrNodePlayer[pos]);
         jsPlayer.setReadyVis(state);
     },
+
+
 });

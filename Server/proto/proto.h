@@ -3,6 +3,7 @@
 
 
 enum ServerCMD {
+    //frame
     SERVER_LOGIN_ACK = 10000,        //登录广播
     SERVER_SCENE_INFO_UC = 10001,    //场景消息
     SERVER_GAME_END = 10002,         //游戏结束
@@ -17,6 +18,9 @@ enum ServerCMD {
     SERVER_GAME_REQ_DISBAND = 10017,            //发起解散
     SERVER_GAME_DISBAND_SELECT = 10018,         //发起解散
     SERVER_GAME_DISBAND_RESUILT = 10019,        //解散结果
+
+    //game
+    SERVER_GAME_SEND_CARD = 10100,        //发牌消息
 };
 
 

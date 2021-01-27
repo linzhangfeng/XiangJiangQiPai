@@ -70,7 +70,7 @@ void Table::upTable(std::shared_ptr <Player> player) {
     sendUpTable(player);
     sendGameScene(player->GetSeatid());
 
-    if (getCurRoomPlayerCount() == 3 && !m_has_start) {
+    if (getCurRoomPlayerCount() == 3 && !m_has_start && isAllReady()) {
         GameStart();
     }
 }
@@ -146,6 +146,14 @@ int Table::getCurRoomPlayerCount() {
     return count;
 }
 
+bool Table::isAllReady() {
+    for (auto ele : m_map_player) {
+        bool isReady = ele.second->GetReady();
+        if (isReady == false)return false;
+    }
+    return true;
+}
+
 void Table::sendGameStart() {
     proto::game::GameStart msg;
     brocast(SERVER_GAME_START, msg);
@@ -185,7 +193,7 @@ void Table::sendDownTable() {
 
 void Table::GameStart() {
     g_log.info("m_roomid:%d", m_roomid);
-//    m_has_start = true;
+    m_has_start = true;
 //    m_start_time = time(nullptr);
     sendGameStart();
 //
@@ -216,7 +224,11 @@ void Table::handler_client_req_disband(int charid, const char *data, int length)
     player->SetDisband(1);
 
     SetDisbandid(msg.disband_id());
-    sendReqDisband(msg.disband_id());
+    if (getCurRoomPlayerCount() == 1) {
+        exitRoom(charid);
+    } else {
+        sendReqDisband(msg.disband_id());
+    }
 }
 
 void Table::handler_client_disband_select(int charid, const char *data, int length) {
@@ -233,12 +245,16 @@ void Table::handler_client_disband_select(int charid, const char *data, int leng
     g_log.info("getDisbandResult: %d\n", result);
     if (result == 1 || result == 2) {
         sendDisbandResult(result);
+        if (result == 1) {
+            //让玩家退出房间
+            disbandRoom();
+        } else if (result == 2) {
+            resetDisbandData();
+        }
+        clearTable();
     } else {
         g_log.info("disband not all select\n");
     }
-
-    //让玩家退出房间
-    disbandRoom();
 }
 
 void Table::handler_client_ready(int charid, const char *data, int length) {
@@ -251,6 +267,11 @@ void Table::handler_client_ready(int charid, const char *data, int length) {
     shared_ptr <Player> player = m_map_player[m_vec_seatid[charid]];
     player->SetReady(msg.isready());
     sendReady(charid, msg.isready());
+
+    //判断是否全部被
+    if (getCurRoomPlayerCount() == 3 && !m_has_start && isAllReady()) {
+        GameStart();
+    }
 }
 
 void Table::handler_client_logout(int charid, const char *data, int length) {
@@ -262,7 +283,7 @@ void Table::handler_client_logout(int charid, const char *data, int length) {
         return;
     }
 
-    if (m_hostid == charid) {
+    if (m_hostid == charid && getCurRoomPlayerCount() != 1) {
         disbandRoom();
         clearTable();
     } else {
@@ -290,6 +311,12 @@ int Table::getDisbandResult() {
         }
     }
     return result;
+}
+
+void Table::resetDisbandData() {
+    for (auto ele : m_map_player) {
+        ele.second->SetDisband(DISBAND_INIT);
+    }
 }
 
 void Table::disbandRoom() {
@@ -393,6 +420,11 @@ int Table::createSeatId(int uid) {
     return -1;
 }
 
+int Table::getNextSeadId() {
+    int seatid = (m_curSeatId + 1) % m_GAME_PLAYER;
+    return seatid;
+}
+
 void Table::clearTable() {
     m_time_start_timeout.cancel();
     m_time_heart.cancel();
@@ -405,6 +437,7 @@ void Table::clearTable() {
     }
 
     m_map_client_cmd.clear();
+    m_map_player.clear();
 
     Game::GetInstance().deleteTable(m_roomid, vec);
 }

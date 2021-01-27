@@ -22,6 +22,8 @@ window.CMD = {
     SERVER_GAME_REQ_DISBAND: 10017,            //发起解散
     SERVER_GAME_DISBAND_SELECT: 10018,         //发起解散
     SERVER_GAME_DISBAND_RESUILT: 10019,        //解散结果
+    //game
+    SERVER_GAME_SEND_CARD: 10100,               //发牌消息
 };
 
 //----------------------------server---------------------------
@@ -39,6 +41,7 @@ ProtoConfig[CMD.SERVER_LOGOUT_ACK] = "proto.login.Logout";
 ProtoConfig[CMD.SERVER_GAME_REQ_DISBAND] = "proto.game.GameDisband";
 ProtoConfig[CMD.SERVER_GAME_DISBAND_SELECT] = "proto.game.GameDisband";
 ProtoConfig[CMD.SERVER_GAME_DISBAND_RESUILT] = "proto.game.GameDisbandResult";
+ProtoConfig[CMD.SERVER_GAME_SEND_CARD] = "proto.game.HandCards";
 
 //----------------------------clinet---------------------------
 ProtoConfig[CMD.CLIENT_READY] = "proto.login.Ready";
@@ -59,6 +62,7 @@ ProtoName[CMD.SERVER_LOGOUT_ACK] = "CMD.SERVER_LOGOUT_ACK";
 ProtoName[CMD.SERVER_GAME_REQ_DISBAND] = "CMD.SERVER_GAME_REQ_DISBAND";
 ProtoName[CMD.SERVER_GAME_DISBAND_SELECT] = "CMD.SERVER_GAME_DISBAND_SELECT";
 ProtoName[CMD.SERVER_GAME_DISBAND_RESUILT] = "CMD.SERVER_GAME_DISBAND_RESUILT";
+ProtoName[CMD.SERVER_GAME_SEND_CARD] = "CMD.SERVER_GAME_SEND_CARD";
 
 //----------------------------clinet---------------------------
 ProtoName[CMD.CLIENT_READY] = "CMD.CLIENT_READY";
@@ -76,17 +80,21 @@ window.PrefabPath = {
     SystemLabel: {
         path: "SystemLabel/SystemLabel",
         bundle: "Component",
+    },
+    Player: {
+        path: "Player/Player",
+        bundle: "Component",
     }
 }
 
 window.RoomState = {
     RoomFree: 0,
-    RoomStart: 1,
+    RoomPlaying: 1,
     RoomEnd: 2,
 }
 
 window.GameState = {
     GameFree: 0,
-    GameStart: 1,
+    GamePlaying: 1,
     GameEnd: 2,
 }

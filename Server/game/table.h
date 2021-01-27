@@ -4,6 +4,7 @@
 #include "player.h"
 #include "../network/ws_client.h"
 #include "../common/macros.h"
+#include "../common/common.h"
 #include "user.h"
 #include <memory>
 #include <functional>
@@ -15,6 +16,7 @@
 #include <unordered_map>
 #include <unordered_map>
 #include "../proto/login.pb.h"
+#include <stdint.h>
 
 using namespace std;
 #define GROOMLOGINFO(format, ...)\
@@ -45,6 +47,12 @@ enum ROOMSTATE {
     ROOM_FREE = 0,            //正常结束
     ROOM_PLAY = 1,            //退出
     ROOM_END = 2,             //房间结算
+};
+
+enum DISBANDSTATE {
+    DISBAND_INIT = 0,            //正常结束
+    DISBAND_AGREE = 1,            //正常结束
+    DISBAND_DISAGREE = 2,            //退出
 };
 
 class Table : public std::enable_shared_from_this<Table> {
@@ -125,7 +133,10 @@ protected:
     boost::asio::steady_timer m_time_start_timeout;
     boost::asio::steady_timer m_time_heart;
     int m_game_player_num = 3;
-    std::vector<int> m_vec_seatid;                    //uid
+    std::vector<int> m_vec_seatid;                          //uid
+    _uint8 m_GAME_PLAYER;                                   //房间人数
+    int m_curSeatId;                                        //当前座位id
+
 public:
     unordered_map<int, shared_ptr<Player>> &getMapPlayer();
 
@@ -142,6 +153,8 @@ public:
     std::shared_ptr <Player> GetPlayer(int charid);
 
     int getCurRoomPlayerCount();
+
+    bool isAllReady();
 
     virtual void GameStart();
 
@@ -160,6 +173,10 @@ public:
     void disbandRoom();
 
     void exitRoom(int seatId);
+
+    int getNextSeadId();
+
+    void resetDisbandData();
 };
 
 

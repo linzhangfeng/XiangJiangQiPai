@@ -27,10 +27,14 @@ cc.Class({
         this.nodeTuoGuanFlag = cc.find("FlagNode/TuoGuan", this.node);
         this.nodeTuoGuanFlag.active = false;
 
+        //地主标签
+        this.nodeLandlordIcon = cc.find("FlagNode/LandlordIcon", this.node);
+        this.nodeLandlordIcon.active = false;
+
         this.nodeTime = cc.find("EffectNode/TimeDown", this.node);
     },
 
-    initData(pos) {
+    init(pos) {
         this.viewID = pos;
         this.reset();
     },
@@ -44,6 +48,8 @@ cc.Class({
         this.setBankerVis(false);
         this.setTimeDown(-1);
         this.setTuoGuanVis(false);
+        this.setReadyVis(false);
+        this.setLandlordIconVis(false);
 
     },
     login(playerData) {
@@ -100,6 +106,14 @@ cc.Class({
             this.nodeReadyFlag.active = bActive;
         }
     },
+
+    //设置地主
+    setLandlordIconVis: function (bActive) {
+        if (this.nodeLandlordIcon) {
+            this.nodeLandlordIcon.active = bActive;
+        }
+    },
+
     //设置托管
     setTuoGuanVis: function (bActive) {
         if (this.nodeTuoGuanFlag) {
@@ -135,10 +149,11 @@ cc.Class({
         return this.viewID;
     },
 
-    //刷新玩家金币
+    //刷新玩家信息
     updateInfo: function (playerData) {
         this.setNickName(playerData.uid);
         this.setScore(playerData.score);
+        this.setReadyVis(playerData.ready);
     },
 
     //设置游戏分数

@@ -16,6 +16,8 @@ module.exports = cc.Class({
         this.gameState = GameState.GameFree;
         this.roomState = RoomState.RoomFree;
         this.table = null;
+        this.landlordid = -1;
+        this.robScore = 0;
     },
     init: function (target) {
         console.log('Model.init');
@@ -107,7 +109,11 @@ module.exports = cc.Class({
         if (seatID == undefined) return this.players;
         return this.players[seatID];
     },
-
+    resetDisbandData() {
+        for (let i = 0; i < this.Play_num; i++) {
+            this.players[i].disband = 0;
+        }
+    },
     initPlayer(seadId, player) {
         let playerData = this.getPlayer(seadId);
         playerData.uid = player.uid;

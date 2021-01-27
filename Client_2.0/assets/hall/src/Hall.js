@@ -27,8 +27,14 @@ cc.Class({
         cc.director.on('HotUpdateFinish', this.onBundleUpdateFinish, this);
         cc.director.on('HotUpdateRate', this.onBundletUpdateRate, this);
 
-        this.nodePlayer = cc.find("Player", this.node);
 
+        GUtils.loadBoundleRes(PrefabPath.Player.path, function (err, prefab) {
+            let nodePlayer = cc.find("Player", this.node);
+            this.nodePlayer = cc.instantiate(prefab);
+            this.nodePlayer.setPosition(nodePlayer.getPosition());
+            nodePlayer.parent.addChild(this.nodePlayer);
+
+        }.bind(this), PrefabPath.Player.bundle);
         let bt_uid_0 = cc.find("UID_0", this.node);
         GUtils.addBtnClick(bt_uid_0, function () {
             GModel.uid = 999999999;

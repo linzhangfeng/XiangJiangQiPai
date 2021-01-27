@@ -6,6 +6,7 @@ module.exports = cc.Class({
 
     init(rootNode) {
         this.rootNode = rootNode;
+        this.rootNode.active = true;
         this.btns = {};
         let bt_layout = cc.find("bt_layout", this.rootNode);
         for (let i = 0; i < bt_layout.children.length; i++) {
