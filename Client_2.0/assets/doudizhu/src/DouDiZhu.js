@@ -42,7 +42,7 @@ cc.Class({
         cc.ddz.Net = new Net();
     },
     start() {
-        // cc.ddz.Table.init(this);
+        cc.ddz.Table.init(this);
     },
     onDestroy() {
 

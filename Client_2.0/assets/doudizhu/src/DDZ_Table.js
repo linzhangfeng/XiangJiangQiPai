@@ -271,45 +271,26 @@ module.exports = cc.Class({
 
     handler_server_game_end: function (data) {
         cc.ddz.Model.gametable.unschedule(this.updateGame);
-        return;
-        try {
-            let packet = ProtoTool.parsePacket("proto.game.GameEnd", data);
-            let gamedata = {};
-            for (let i = 0; i < GModel.players.length; i++) {
-                let uid = GModel.players[i].uid;
-                let seatid = GModel.players[i].seatid;
-                if (packet.seatid == seatid) {
-                    gamedata[uid] = 1;
-                } else {
-                    gamedata[uid] = 0;
-                }
-            }
-            if (global && global.showGameEnd) global.showGameEnd(gamedata, function () {
-                GUI.rootNode.destroy();
-            });
-        } catch (e) {
-            GUI.rootNode.destroy();
-        }
     },
 
     handler_server_emoji: function (data) {
         let packet = ProtoTool.parsePacket("proto.game.shetiqi.Emoji", data);
         let seatid = packet.seatid;
         let id = packet.id;
-        cc.ddz.TipMgr.showFace(seatid, id);
+        // cc.ddz.TipMgr.showFace(seatid, id);
     },
 
     handler_server_vioce: function (data) {
-        let packet = ProtoTool.parsePacket("proto.game.shetiqi.Voice", data);
-        let seatid = packet.charid;
-        let state = packet.status;
-        return;
-        let player = GModel.players[seatid];
-        if (state == 1) {
-            GUI.playerSoundOn(player.uid, true);
-        } else {
-            GUI.playerSoundOff(player.uid, true);
-        }
+        // let packet = ProtoTool.parsePacket("proto.game.shetiqi.Voice", data);
+        // let seatid = packet.charid;
+        // let state = packet.status;
+        // return;
+        // let player = GModel.players[seatid];
+        // if (state == 1) {
+        //     GUI.playerSoundOn(player.uid, true);
+        // } else {
+        //     GUI.playerSoundOff(player.uid, true);
+        // }
     },
     handler_server_uptable_ack(data) {
         console.log('%c' + "handler_server_uptable_ack:", 'color:red');

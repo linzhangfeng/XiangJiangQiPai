@@ -3,7 +3,6 @@
 #include "../common/macros.h"
 #include "../proto/proto.h"
 #include "../proto/landlord.pb.h"
-#include "../proto/game.pb.h"
 #include "../common/protobuf2json.h"
 #include <random>
 #include <chrono>
@@ -34,9 +33,11 @@ CTableSheTiQi::~CTableSheTiQi() {
 
 
 void CTableSheTiQi::GameStart() {
-    Table::GameStart();
-
+//    Table::GameStart();
+    if (GetRoomState() != ROOM_FREE)return;
     sendGameStart();
+    SetGameState(GAME_PLAY);
+    SetRoomState(ROOM_PLAY);
 
     //从牌池发牌
     m_CardPool.InitPool();
@@ -72,7 +73,33 @@ void CTableSheTiQi::sendHandCard() {
 }
 
 void CTableSheTiQi::sendGameScene(int charid) {
-    Table::sendGameScene(charid);
+    proto::game::GameScene msg;
+
+    //玩家信息
+    for (auto ele : m_vec_seatid) {
+        proto::login::Player *p = msg.add_player_info();
+        if (m_map_player.find(ele) != m_map_player.end()) {
+            setProtoPLayerInfo(p, m_map_player[ele]);
+        }
+    }
+    msg.set_host_id(GetHostid());
+    msg.set_room_state(GetRoomState());
+    msg.set_game_state(GetGameState());
+
+    if (GetGameState() == GAME_FREE) {
+        unicast(charid, SERVER_SCENE_INFO_UC, msg);
+        return;
+    }
+    //手牌信息
+    for (int i = 0; i < GAME_PLAYER; i++) {
+        proto::game::HandCards *msg_handcards = msg.add_hand_cards();
+        setProtoHandCards(msg_handcards, m_HandCard[i]);
+    }
+
+
+    unicast(charid, SERVER_SCENE_INFO_UC, msg);
+
+//    Table::sendGameScene(charid);
 }
 
 void CTableSheTiQi::sendRoblandlord(int seatid, int operatorId, int robValue, bool isFinish) {
@@ -125,4 +152,12 @@ bool CTableSheTiQi::isRobLandlordFinish(int rob_value) {
         if (m_robLandlordValue[i] == -1)return false;
     }
     return true;
+}
+
+
+void CTableSheTiQi::setProtoHandCards(proto::game::HandCards *msg, HandCards handcard) {
+    msg->set_changeablecardslen(handcard.ChangeableCardsLen);
+    for (int i = 0; i < handcard.ChangeableCardsLen; i++) {
+        msg->add_changeablecards(handcard.ChangeableCards[i]);
+    }
 }

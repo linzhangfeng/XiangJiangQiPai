@@ -1,6 +1,7 @@
 /*jshint esversion:6*/
 let PK_TEX = require("HandCardTexture");
 let g_pCardArray = [];
+const focusColor = new cc.Color(150, 150, 150);
 
 //扑克操作数据
 let g_cbMaskValue = 0x0F;                  //牌值掩码
@@ -22,7 +23,11 @@ let CARDSTATE = {
 cc.Class({
     extends: cc.Component,
 
-    properties: {},
+    properties: {
+        isCanTouch: true,
+        isSelect: false,
+    },
+
 
     // use this for initialization
     onLoad: function () {
@@ -47,7 +52,7 @@ cc.Class({
     initListener: function () {
         //touch事件
         this.node.on(cc.Node.EventType.TOUCH_START, this.onTouchBegan.bind(this), this);
-        this.node.on(cc.Node.EventType.TOUCH_MOVE, this.onTouchMoved.bind(this), this);
+        // this.node.on(cc.Node.EventType.TOUCH_MOVE, this.onTouchMoved.bind(this), this);
         this.node.on(cc.Node.EventType.TOUCH_END, this.onTouchEnded.bind(this), this);
         this.node.on(cc.Node.EventType.TOUCH_CANCEL, this.onTouchCancel.bind(this), this);
     },
@@ -58,6 +63,13 @@ cc.Class({
         this.cardValue = 0;             //牌值
         this.cardColor = 0;             //牌色
         this.isUp = false;
+    },
+
+    setSelect: function (select) {
+        if (this.isSelect != select) {
+            this.isSelect = select;
+            this.node.color = select ? focusColor : cc.Color.WHITE;
+        }
     },
 
     setBankerVis: function (v) {
@@ -157,9 +169,7 @@ cc.Class({
 
     //touch事件
     onTouchBegan: function (event) {
-        if (!this.isCanTouch) {
-            return;
-        }
+        if (!this.isCanTouch) return false;
         this.bMoved = false;
         let touches = event.getTouches();
         let touch = touches[0];
@@ -167,12 +177,16 @@ cc.Class({
         //若有处理，忽略后面处理
         if ((this.OnCardClickBegin && !this.OnCardClickBegin(this))) {
             this.bMoved = false;
-        }
 
+        }
+        console.log("lin=onTouchBegan:" + this.getCardData());
+        //处理结果
+        this.onCardButtonEvent(event);
         return true;
     },
 
     onTouchMoved: function (event) {
+        if (!this.isCanTouch) return false;
         let self = this;
         let touches = event.getTouches();
         let touch = touches[0];
@@ -197,23 +211,10 @@ cc.Class({
     },
 
     onTouchEnded: function (event) {
+        if (!this.isCanTouch) return false;
         let self = this;
-        if (self.bMoved) {
-            if (self.node.y < 200) {
-                self.node.y = 0;
-                if (self.OnCardClickEnded) {
-                    self.OnCardClickEnded(self.node, false);
-                }
-            } else {
-                if (self.OnCardClickEnded) {
-                    self.OnCardClickEnded(self.node, true);
-                }
-            }
-        } else {
-            //处理结果
-            this.onCardButtonEvent(event);
-        }
-
+        if (self.OnCardClickEnded) self.OnCardClickEnded(self.node, true);
+        console.log("lin=onTouchEnded:" + this.getCardData());
     },
 
     onTouchCancel: function (event) {

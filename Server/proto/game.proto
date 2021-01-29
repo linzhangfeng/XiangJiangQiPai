@@ -23,6 +23,7 @@ message GameScene
   optional int32 host_id = 3;                    //房主ID
   required int32 room_state = 4;                 //房间状态
   required int32 game_state = 5;                 //游戏状态
+  repeated HandCards hand_cards = 6;             //玩家信息
 }
 
 //玩家信息

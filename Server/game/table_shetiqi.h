@@ -7,6 +7,7 @@
 #include "../liblandlord/landlord_def.h"
 #include "../liblandlord/landlord_cardpool.h"
 #include "../liblandlord/landlord_cardtype.h"
+#include "../proto/game.pb.h"
 
 enum LANDLORD_CMD {
     SERVER_ROBDISBAND_ACK = 20000,          //广播开始抢地主
@@ -63,6 +64,7 @@ public:
 
     bool isRobLandlordFinish(int rob_value);
 
+    void setProtoHandCards(proto::game::HandCards *msg, HandCards handcard);
 };
 
 #endif

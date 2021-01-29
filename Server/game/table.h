@@ -49,6 +49,12 @@ enum ROOMSTATE {
     ROOM_END = 2,             //房间结算
 };
 
+enum GAMESTATE {
+    GAME_FREE = 0,            //正常结束
+    GAME_PLAY = 1,            //退出
+    GAME_END = 2,             //房间结算
+};
+
 enum DISBANDSTATE {
     DISBAND_INIT = 0,            //正常结束
     DISBAND_AGREE = 1,            //正常结束
