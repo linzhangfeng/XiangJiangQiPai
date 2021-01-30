@@ -1,0 +1,12 @@
+{
+  "ver": "1.1.2",
+  "uuid": "92ad261c-c324-4131-b783-1cb3881362ba",
+  "isBundle": true,
+  "bundleName": "caishendao",
+  "priority": 1,
+  "compressionType": {},
+  "optimizeHotUpdate": {},
+  "inlineSpriteFrames": {},
+  "isRemoteBundle": {},
+  "subMetas": {}
+}

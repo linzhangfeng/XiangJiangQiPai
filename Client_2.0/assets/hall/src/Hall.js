@@ -89,7 +89,7 @@ cc.Class({
     loadBundle: function (bundleName) {
         var sceneName = {};
         sceneName['doudizhu'] = 'DouDiZhu';
-        sceneName['bundle2'] = 'Bundle2Scene';
+        sceneName['caishendao'] = 'CaiShenDao';
         cc.assetManager.loadBundle(bundleName, null, (err, bundle) => {
             //这里存一下bundle，在bundle场景销毁的时候释放，保证下次bundle热更之后引用的资源都是最新的
             bundle.loadScene(sceneName[bundleName], (err, sceneAsset) => {
@@ -112,13 +112,7 @@ cc.Class({
     },
 
     onBtnLoadBundle2: function () {
-        let bundle = window['bundle2'];
-        if (bundle) {
-            bundle.releaseAll();
-            cc.assetManager.removeBundle(bundle);
-        }
-        window['bundle2'] = null;
-        this.nodeBundle2.getComponent('BundleUpdateModule').hotUpdate();
+        this.loadBundle("caishendao");
     },
 
     onBtnReturnLogin: function () {
