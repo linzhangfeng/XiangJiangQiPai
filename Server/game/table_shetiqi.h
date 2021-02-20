@@ -23,6 +23,12 @@ enum ROB_LANDLORD_VALUE {
     ROB_VALUE_3 = 3,
 };
 
+enum ROB_LANDLORD_STATE {
+    ROB_STATE_INIT = 0,         //抢庄未开始
+    ROB_STATE_PLAYING = 1,      //抢庄进行中
+    ROB_STATE_FINISH = 2,       //抢庄完成
+};
+
 class CTableSheTiQi : public Table {
 public:
     CTableSheTiQi();
@@ -65,6 +71,10 @@ public:
     bool isRobLandlordFinish(int rob_value);
 
     void setProtoHandCards(proto::game::HandCards *msg, HandCards handcard);
+
+    int getLandlordId();
+
+    void reset();
 };
 
 #endif

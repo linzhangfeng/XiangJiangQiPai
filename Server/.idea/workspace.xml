@@ -88,13 +88,6 @@
       <recent name="D:\linzhangfeng\MyGithub\boosttest\run" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -122,7 +115,13 @@
       <workItem from="1611026931878" duration="37442000" />
       <workItem from="1611150440302" duration="30647000" />
       <workItem from="1609045564416" duration="2538000" />
-      <workItem from="1611463606822" duration="33955000" />
+      <workItem from="1611463606822" duration="36174000" />
+      <workItem from="1612279137444" duration="589000" />
+      <workItem from="1612282650274" duration="3000" />
+      <workItem from="1612334384521" duration="3000" />
+      <workItem from="1612440301346" duration="596000" />
+      <workItem from="1612926801754" duration="1198000" />
+      <workItem from="1613617398422" duration="22330000" />
     </task>
     <servers />
   </component>
@@ -150,10 +149,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="839" y="167" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1611499431233" />
-    <state x="619" y="87" width="818" height="804" key="find.popup" timestamp="1611721689815">
+    <state x="619" y="87" width="818" height="804" key="find.popup" timestamp="1613627001459">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="619" y="87" width="818" height="804" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1611721689815" />
+    <state x="619" y="87" width="818" height="804" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1613627001459" />
     <state x="470" y="422" width="980" height="212" key="makefile.clean.confirm.dialog" timestamp="1606208364947">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

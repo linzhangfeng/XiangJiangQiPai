@@ -41,6 +41,15 @@ exp.loadFiles = function (protoFilesbfu, cb) {
     for (let i = 0, len = protoFilesbfu.length; i < len; ++i) {
         protoFiles.push(protoFilesbfu[i].files);
     }
+    let isNeedLoad = function (fileName) {
+        for (let i = 0; i < protoFilesbfu.length; i++) {
+            let config = protoFilesbfu[i];
+            if (config.files == fileName) {
+                return config.isload;
+            }
+        }
+        return false;
+    }
     let loadFile = function (path) {
         if (typeof cc !== 'undefined') {
             console.log('cc.sys.isNative  ' + cc.sys.isNative);
@@ -56,17 +65,13 @@ exp.loadFiles = function (protoFilesbfu, cb) {
         protoFiles.forEach(function (fileName) {
             let filePath = 'proto/' + fileName;
             let contents = cc.loader.getProtoRes(filePath);
-            ProtoBuf.loadProto(contents, builder, filePath);
-
-            for (let i = 0, len = protoFilesbfu.length; i < len; ++i) {
-                if (fileName == protoFilesbfu[i].files) {
-                    let packagename = protoFilesbfu[i].package;
-                    protoinfo.mProtoFrom[packagename] = builder.build(packagename);
-                    break;
-                }
-            }
-            if (++count == protoFilesbfu.length && !!cb) cb();
+            if (isNeedLoad(fileName)) ProtoBuf.loadProto(contents, builder, filePath);
         });
+        for (let i = 0, len = protoFilesbfu.length; i < len; ++i) {
+            let packagename = protoFilesbfu[i].package;
+            protoinfo.mProtoFrom[packagename] = builder.build(packagename);
+        }
+        if (!!cb) cb();
     }
     let preload = function (_cb) {
         //运行时动态修改ProtoBuf.Util.fetch为cc.loader.getRes

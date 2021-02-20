@@ -16,6 +16,8 @@
 #include <unordered_map>
 #include <unordered_map>
 #include "../proto/login.pb.h"
+#include "../proto/game.pb.h"
+
 #include <stdint.h>
 
 using namespace std;
@@ -91,6 +93,8 @@ public:
     virtual void sendDisbandResult(int result);
 
 public:
+WB_FUNC_INIT(int, m_rob_state, 0, RobState);
+public:
     //通用消息处理
     virtual void handler_client_emoji(int charid, const char *data, int length);
 
@@ -155,6 +159,8 @@ public:
     void setPlayer(int seatId, std::shared_ptr <CWsClient> pclient);
 
     void setProtoPLayerInfo(proto::login::Player *msg_player, shared_ptr <Player> player);
+
+    void setProtoGameScene(proto::game::GameScene *msg_scene);
 
     std::shared_ptr <Player> GetPlayer(int charid);
 

@@ -49,6 +49,14 @@ module.exports = cc.Class({
     },
 
     setReadyState(seatid, state) {
+        if (seatid == -1) {
+            for (let i = 0; i < this.arrNodePlayer.length; i++) {
+                let nodePlayer = this.arrNodePlayer[i];
+                let jsPlayer = this.getJsPlayer(nodePlayer);
+                jsPlayer.setReadyVis(state);
+            }
+            return;
+        }
         let pos = cc.ddz.Model.getPosBySeatid(seatid);
         let jsPlayer = this.getJsPlayer(this.arrNodePlayer[pos]);
         jsPlayer.setReadyVis(state);

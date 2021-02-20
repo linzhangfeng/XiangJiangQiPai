@@ -125,35 +125,6 @@ module.exports = cc.Class({
             return this.getLogicValue(b) - this.getLogicValue(a);
         }.bind(this))
         return bCardData
-        //==========================================
-        var bLogicValue = new Array()
-        for (var i = 0; i < bCardData.length; i++) {
-            bLogicValue[i] = this.getLogicValue(bCardData[i])
-        }
-
-        var bSorted = true;
-        var bTempData;
-        var bLast = bCardData.length - 1;
-
-        do {
-            bSorted = true;
-            for (let i = 0; i < bLast; i++) {
-                if ((bLogicValue[i] < bLogicValue[i + 1]) ||
-                    ((bLogicValue[i] == bLogicValue[i + 1]) && (bCardData[i] < bCardData[i + 1]))) {
-                    //交换位置
-                    bTempData = bCardData[i];
-                    bCardData[i] = bCardData[i + 1];
-                    bCardData[i + 1] = bTempData;
-                    bTempData = bLogicValue[i];
-                    bLogicValue[i] = bLogicValue[i + 1];
-                    bLogicValue[i + 1] = bTempData;
-                    bSorted = false;
-                }
-            }
-            bLast--;
-        } while (bSorted == false);
-
-        return bCardData
     },
 
     getCardType: function (data, result) {

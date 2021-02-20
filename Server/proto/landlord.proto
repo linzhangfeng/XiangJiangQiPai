@@ -1,21 +1,31 @@
 syntax = "proto2";
 package proto.landlord;
-
+import "game.proto";
 //开始抢地主
 message RobLandlord
 {
   required int32 seatid = 1;         //座位id
   required int32 operatorid = 2;     //当前操作id
-  repeated int32 rod_values = 3;      //可以抢的倍率
-  required int32 rod_value = 4;          //用户抢的赔率
-  required bool isfinish = 5;        //抢地主是否完成
+  repeated int32 rod_values = 3;     //可以抢的倍率
+  required int32 rod_value = 4;      //用户抢的赔率
+  optional bool isfinish = 5;        //抢地主是否完成
 }
 
 //广播抢地主结果
 message AckRobLandlordResult
 {
   required int32 seatid = 1;         //座位id
-  required int32 rod_value = 2;          //最高赔率
+  required int32 rod_value = 2;      //最高赔率
+  repeated int32 public_cards = 3;   //底牌
 }
 
-
+//广播抢地主结果
+message LandlordScene
+{
+  required game.GameScene public_scene = 1;       //公共游戏场景
+  repeated game.HandCards hand_cards = 2;             //玩家信息
+  optional int32 rod_value = 3;                   //最高赔率
+  repeated int32 public_cards = 4;                //底牌
+  optional int32 roblandlord_state = 5;           //抢地主状态                                              //抢地主状态
+  repeated int32 roblandlord_values = 6;           //抢地主分数
+}

@@ -1,6 +1,6 @@
 syntax = "proto2";
 package proto.game;
-
+import "login.proto";
 //玩家信息
 message GameStart
 {
@@ -60,4 +60,10 @@ message GameDisband
   optional int32 disband_id = 1;         //解散发起人ID
   optional int32 seatid = 2;            //庄家ID
   optional int32 state = 3;             //1:同意  2：反对
+}
+
+//空协议
+message Null
+{
+  optional int32 null = 1;         //解散发起人ID
 }

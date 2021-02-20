@@ -1,5 +1,5 @@
 module.exports = cc.Class({
-    properties:{
+    properties: {
         rootNode: null,
     },
     ctor() {
@@ -43,12 +43,20 @@ module.exports = cc.Class({
                 // let ok = this.handler_cmd(id, data, true);
                 // if (!ok) {
                 //解析协议
-                console.log('%c' + ProtoName[id] + " cmd:" + id, 'color:red');
-                let packet = ProtoTool.parsePacket(ProtoConfig[id], data);
-                GTcp.pushData(id, packet);
+                let packet = null;
+                if (LANDLORD_ProtoConfig[id]) {
+                    console.log('%c' + LANDLORD_ProtoName[id] + " cmd:" + id, 'color:red');
+                    packet = ProtoTool.parsePacket(LANDLORD_ProtoConfig[id], data);
+                } else if (ProtoConfig[id]) {
+                    console.log('%c' + ProtoName[id] + " cmd:" + id, 'color:red');
+                    packet = ProtoTool.parsePacket(ProtoConfig[id], data);
+                } else {
+                    console.error('%c未配置' + " cmd:" + id, 'color:red');
+                }
+                if (packet) GTcp.pushData(id, packet);
                 // }
             } catch (e) {
-
+                console.error("解析熟悉错误" + " cmd:" + id + ":" + e);
             }
         }
     },
@@ -59,7 +67,8 @@ module.exports = cc.Class({
 
         let response = GTcp.popData();
         if (response) {
-            cc.log('%c' + "action:cmd=" + response.cmd + " data=" + JSON.stringify(response.data), 'color:violet');
+            cc.log('%c' + "Action:cmd=" + response.cmd + " protoName=" + ProtoName[response.cmd], 'color:violet');
+            cc.log('%c' + " data：" + JSON.stringify(response.data), 'color:green');
             this.handler_cmd(response.cmd, response.data, false);
         }
     },
@@ -68,20 +77,16 @@ module.exports = cc.Class({
             case  CMD.SERVER_SCENE_INFO_UC:
                 this.handler_server_scene_info(jpacket);
                 break;
-
             case  CMD.SERVER_LOGIN_ACK:
                 this.handler_server_login_ack(jpacket);
                 break;
-
             case  CMD.SERVER_GAME_END:
                 if (canWait && GModel.isEnterWait) return false;
                 this.handler_server_game_end(jpacket);
                 break;
-
             case  CMD.SERVER_EMOJI:
                 this.handler_server_emoji(jpacket);
                 break;
-
             case  CMD.SERVER_EMOJI:
                 this.handler_server_vioce(jpacket);
                 break;
@@ -127,18 +132,23 @@ module.exports = cc.Class({
         let rod_value = data.rod_value;
         let public_cards = data.public_cards;
         let pos = cc.ddz.Model.getPosBySeatid(seatid);
-        cc.ddz.Model.seatid = seatid;
+        cc.ddz.Model.landlordid = seatid;
         cc.ddz.Model.robScore = rod_value;
 
+        //刷新公共牌，手牌
         cc.ddz.CardsMgr.setPublicCardsValue(public_cards);
         cc.ddz.CardsMgr.updatePublicCards(public_cards);
 
+        //隐藏抢庄分数
+        cc.ddz.TipMgr.showRobScoreTxt(-1);
+
+        //头像地主图标
         let jsPlayer = cc.ddz.PlayerMgr.getJsPlayerByPos(pos);
         jsPlayer.setLandlordIconVis(true);
     },
 
     handler_server_rob_landlord_ack(data) {
-        console.log('%c' + "handler_server_rob_landlord:", 'color:red');
+        console.log('%c' + "handler_server_rob_landlord_ack:", 'color:red');
         let seatid = data.seatid;
         let operatorid = data.operatorid;
         let rod_values = data.rod_values;
@@ -155,8 +165,13 @@ module.exports = cc.Class({
         console.log('%c' + "handler_server_send_card:", 'color:red');
         let changeableCardsLen = data.changeableCardsLen;
         let changeableCards = data.changeableCards;
+
+        //储存和刷新手牌
         cc.ddz.CardsMgr.setHandCardsValue(changeableCards);
-        cc.ddz.CardsMgr.updateHandcards(changeableCards);
+        cc.ddz.CardsMgr.updateHandcards();
+
+        //显示公共牌
+        cc.ddz.CardsMgr.showPublicCards();
     },
 
     handler_server_game_start(data) {
@@ -165,6 +180,12 @@ module.exports = cc.Class({
         cc.ddz.Model.roomState = RoomState.RoomPlaying;
         //修改r游戏状态
         cc.ddz.Model.gameState = GameState.GamePlaying;
+
+        //隐藏公共按钮
+        cc.ddz.PublicMgr.hideAllBtns();
+
+        //隐藏玩家准备状态
+        cc.ddz.PlayerMgr.setReadyState(-1, false);
     },
 
     handler_server_disband_result(data) {
@@ -257,15 +278,30 @@ module.exports = cc.Class({
     },
 
     handler_server_scene_info: function (data) {
-        cc.ddz.Model.roomState = data.room_state;
-        cc.ddz.Model.gameState = data.game_state;
-        cc.ddz.Model.hostId = data.host_id;
-        this.initPlayerData(data.player_info)
+        let public_scene = data.public_scene;
+        cc.ddz.Model.roomState = public_scene.room_state;
+        cc.ddz.Model.gameState = public_scene.game_state;
+        cc.ddz.Model.hostId = public_scene.host_id;
+        this.initPlayerData(public_scene.player_info)
 
         if (cc.ddz.Model.roomState == RoomState.RoomFree) {
             let playerData = cc.ddz.Model.getPlayer(cc.ddz.Model.seatid);
             cc.ddz.PublicMgr.showPublicBtns(cc.ddz.Model.hostId == cc.ddz.Model.seatid, playerData.ready);
             return;
+        } else {
+            //隐藏玩家准备状态
+            cc.ddz.PlayerMgr.setReadyState(-1, false);
+        }
+
+        if (cc.ddz.Model.gameState == GameState.GamePlaying) {
+            //恢复玩家手牌
+            let handcards = data.hand_cards[cc.ddz.Model.seatid].changeableCards;
+            cc.ddz.CardsMgr.setHandCardsValue(handcards);
+            cc.ddz.CardsMgr.updateHandcards();
+
+            //恢复出牌区域的牌
+
+            //恢复抢地主状态
         }
     },
 

@@ -43,7 +43,7 @@ module.exports = cc.Class({
     },
 
     onTouchStart: function (event) {
-        this.startPos = this.node.convertToNodeSpaceAR(event.getLocation());
+        this.startPos = this.lo_handcards.convertToNodeSpaceAR(event.getLocation());
         this.curPos = this.startPos;
         this.preSelect();
     },
@@ -51,28 +51,29 @@ module.exports = cc.Class({
     onTouchEnd: function (event) {
         let lock = true
         let selectCards = [];
-        this.node.children.forEach(function (pk) {
-            let poker = pk.getComponent('LlPoker');
-            if (pk.active && poker._focus) {
-                poker.onSelect();
-                if (poker.getSelected()) selectCards.push(pk);
+        this.lo_handcards.children.forEach(function (pk) {
+            let poker = pk.getComponent('PKCard');
+            if (pk.active && poker.getSelect()) {
+                poker.setUp(!poker.getUp());
+                // if (poker.getUp()) selectCards.push(pk);
                 lock = false
             }
+            poker.setSelect(false);
         }, this)
-        this.selectCanOutCards(selectCards);
-        if (!lock)
-            cc.mgr.audioMgr.playSFX('landlord/select.mp3');
+        // this.selectCanOutCards(selectCards);
+        // if (!lock) cc.mgr.audioMgr.playSFX('landlord/select.mp3');
     },
-
+    selectCanOutCards(selectCards) {
+        this.selectCards();
+    },
     onTouchCancel: function (event) {
         this.onTouchEnd(event);
     },
 
     onTouchMove: function (event) {
-        let np = this.node.convertToNodeSpaceAR(event.getLocation());
-        if (np.y > this.node.height)
-            return;
-        this.curPos = this.node.convertToNodeSpaceAR(event.getLocation());
+        let np = this.lo_handcards.convertToNodeSpaceAR(event.getLocation());
+        if (np.y > this.lo_handcards.height) return;
+        this.curPos = this.lo_handcards.convertToNodeSpaceAR(event.getLocation());
         this.preSelect();
     },
 
@@ -81,29 +82,29 @@ module.exports = cc.Class({
         let maxx = Math.max(this.startPos.x, this.curPos.x);
 
         let lastBoxMinx = 9999;
-        for (let i = this.node.childrenCount - 1; i >= 0; i--) {
-            let poker = this.node.children[i].getComponent('LlPoker');
+        for (let i = this.lo_handcards.childrenCount - 1; i >= 0; i--) {
+            let poker = this.lo_handcards.children[i].getComponent('PKCard');
             let bbox = poker.node.getBoundingBox();
             if (bbox.xMax > minx && bbox.xMin < maxx && minx < lastBoxMinx) {
-                poker.onFocus(true);
+                poker.setSelect(true);
                 lastBoxMinx = bbox.xMin;
             } else {
-                poker.onFocus(false);
+                poker.setSelect(false);
             }
         }
     },
 
     selectCards: function (cards) {
-        for (let i = 0; i < this.node.childrenCount; i++) {
-            let poker = this.node.children[i].getComponent('LlPoker');
+        for (let i = 0; i < this.lo_handcards.childrenCount; i++) {
+            let poker = this.lo_handcards.children[i].getComponent('PKCard');
             if (poker._selected) {
                 poker.cancelSelect();
             }
         }
 
         for (let i = 0; i < cards.length; i++) {
-            for (let j = 0; j < this.node.childrenCount; j++) {
-                let poker = this.node.children[j].getComponent('LlPoker');
+            for (let j = 0; j < this.lo_handcards.childrenCount; j++) {
+                let poker = this.lo_handcards.children[j].getComponent('PKCard');
                 if (poker._selected == false && poker.face == cards[i]) {
                     poker.onSelect();
                     break;
@@ -119,7 +120,9 @@ module.exports = cc.Class({
     setPublicCardsValue(cardData) {
         this.arr_publiccards_value = cardData;
     },
-    updateHandcards(handcardsData) {
+    updateHandcards() {
+        this.arr_handcards_value = cc.ddz.CardLib.sortCard(this.arr_handcards_value);
+        let handcardsData = this.arr_handcards_value;
         this.lo_handcards.removeAllChildren(true);
         for (let i = 0; i < handcardsData.length; i++) {
             let nodeCard = cc.instantiate(this.pf_handcard);
@@ -138,7 +141,15 @@ module.exports = cc.Class({
             jsCard.setCardData(1.0, i, publicCardsData[i]);
         }
     },
-
+    showPublicCards(){
+        this.lo_publiccards.removeAllChildren(true);
+        for (let i = 0; i < 3; i++) {
+            let nodeCard = cc.instantiate(this.pf_publiccard);
+            let jsCard = this.getJsCard(nodeCard);
+            this.lo_publiccards.addChild(nodeCard);
+            jsCard.setCardData(1.0, i, 0);
+        }
+    },
     getJsCard(nodeCard) {
         return nodeCard.getComponent("PKCard");
     }

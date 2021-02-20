@@ -40,6 +40,7 @@ module.exports = cc.Class({
                 break;
             }
         }
+        this.hideAllBtns();
     },
 
     setOperator(values, isFirst) {
@@ -50,8 +51,8 @@ module.exports = cc.Class({
 
         for (let key in this.btns) {
             let strs = key.split("_");
-            if (strs.length > 2 && values.indexOf(strs[2]) != -1) {
-                btns[key].active = true;
+            if (strs.length > 2 && values.indexOf(parseInt(strs[2])) != -1) {
+                this.btns[key].active = true;
             }
         }
     },

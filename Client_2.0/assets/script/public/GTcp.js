@@ -15,13 +15,16 @@ window.GTcp = {
         let protoFilesbfu = [
             {
                 files: 'login.proto',
-                package: 'proto.login'
+                package: 'proto.login',
+                isload:false
             }, {
                 files: 'game.proto',
-                package: 'proto.game'
+                package: 'proto.game',
+                isload:false
             }, {
                 files: 'landlord.proto',
-                package: 'proto.landlord'
+                package: 'proto.landlord',
+                isload: true
             }];
         ProtoTool.loadFiles(protoFilesbfu, cb);
     },
@@ -51,7 +54,7 @@ window.GTcp = {
         // cc.log("temp_data_array l:" + this.temp_data_array.length);
         if (this.temp_data_array.length == 0) return null;
         let data = this.temp_data_array.shift();
-        cc.log("popData:" + JSON.stringify(data));
+        // cc.log("popData:" + JSON.stringify(data));
         return data;
     },
     sendReady(seatid, isReady) {

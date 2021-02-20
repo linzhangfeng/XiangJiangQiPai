@@ -4,9 +4,11 @@
 #include "../proto/proto.h"
 #include "../proto/landlord.pb.h"
 #include "../common/protobuf2json.h"
+#include "../common/log.h"
 #include <random>
 #include <chrono>
 
+extern CLog g_log;
 using namespace std;
 extern boost::asio::io_context g_ioc;
 
@@ -34,10 +36,12 @@ CTableSheTiQi::~CTableSheTiQi() {
 
 void CTableSheTiQi::GameStart() {
 //    Table::GameStart();
+    g_log.info("m_roomstate:%d\n", GetRoomState());
     if (GetRoomState() != ROOM_FREE)return;
     sendGameStart();
     SetGameState(GAME_PLAY);
     SetRoomState(ROOM_PLAY);
+    m_curRobValue = 0;
 
     //从牌池发牌
     m_CardPool.InitPool();
@@ -46,6 +50,7 @@ void CTableSheTiQi::GameStart() {
     sendHandCard();
 
     //开始叫地主  从座位ID为0
+    m_curSeatId = 0;
     sendRoblandlord(0, 0, 0, false);
 
 }
@@ -73,29 +78,29 @@ void CTableSheTiQi::sendHandCard() {
 }
 
 void CTableSheTiQi::sendGameScene(int charid) {
-    proto::game::GameScene msg;
+    proto::landlord::LandlordScene msg;
+    proto::game::GameScene *msg_public_scene = msg.mutable_public_scene();
 
-    //玩家信息
-    for (auto ele : m_vec_seatid) {
-        proto::login::Player *p = msg.add_player_info();
-        if (m_map_player.find(ele) != m_map_player.end()) {
-            setProtoPLayerInfo(p, m_map_player[ele]);
-        }
-    }
-    msg.set_host_id(GetHostid());
-    msg.set_room_state(GetRoomState());
-    msg.set_game_state(GetGameState());
+    setProtoGameScene(msg_public_scene);
 
-    if (GetGameState() == GAME_FREE) {
-        unicast(charid, SERVER_SCENE_INFO_UC, msg);
-        return;
-    }
     //手牌信息
     for (int i = 0; i < GAME_PLAYER; i++) {
         proto::game::HandCards *msg_handcards = msg.add_hand_cards();
         setProtoHandCards(msg_handcards, m_HandCard[i]);
     }
 
+    //底牌信息
+    for (int i = 0; i < BOTTOM_CARD_MAX; i++) {
+        msg.add_public_cards(m_bottomCards[i]);
+    }
+
+    //抢庄状态
+    msg.set_roblandlord_state(GetRobState());
+
+    //抢庄分数
+    for (int i = 0; i < GAME_PLAYER; i++) {
+        msg.add_roblandlord_values(m_robLandlordValue[i]);
+    }
 
     unicast(charid, SERVER_SCENE_INFO_UC, msg);
 
@@ -104,7 +109,7 @@ void CTableSheTiQi::sendGameScene(int charid) {
 
 void CTableSheTiQi::sendRoblandlord(int seatid, int operatorId, int robValue, bool isFinish) {
     proto::landlord::RobLandlord msg;
-    msg.set_seatid(m_curSeatId);
+    msg.set_seatid(seatid);
     msg.set_operatorid(operatorId);
     msg.set_rod_value(robValue);
     msg.set_isfinish(isFinish);
@@ -119,6 +124,12 @@ void CTableSheTiQi::sendRoblandlordResult() {
     proto::landlord::AckRobLandlordResult msg;
     msg.set_seatid(m_landlordId);
     msg.set_rod_value(m_curRobValue);
+
+    m_CardPool.GetCard(m_bottomCards, BOTTOM_CARD_MAX);
+    for (int i = 0; i < BOTTOM_CARD_MAX; i++) {
+        msg.add_public_cards(m_bottomCards[i]);
+    }
+
     brocast(SERVER_ROBDISBAND_RESULT, msg);
 }
 
@@ -133,15 +144,37 @@ void CTableSheTiQi::handler_client_roblandlord_select(int charid, const char *da
     int next_opertorId = getNextSeadId();
     int rob_value = msg.rod_value();
     int seatid = msg.seatid();
-    m_curRobValue = rob_value;
+    if (rob_value > m_curRobValue)m_curRobValue = rob_value;
     m_curSeatId = getNextSeadId();
     m_robLandlordValue[seatid] = rob_value;
     bool isFinish = isRobLandlordFinish(rob_value);
-    sendRoblandlord(seatid, m_curSeatId, m_curRobValue, isFinish);
+    sendRoblandlord(seatid, m_curSeatId, rob_value, isFinish);
     if (isFinish) {
-        m_landlordId = seatid;
+        m_landlordId = getLandlordId();
         sendRoblandlordResult();
     }
+}
+
+int CTableSheTiQi::getLandlordId() {
+    int landlordId = 0;
+    int max = m_robLandlordValue[landlordId];
+
+    for (int i = 1; i < GAME_PLAYER; i++) {
+        if (m_robLandlordValue[i] > max) {
+            max = m_robLandlordValue[i];
+            landlordId = i;
+        }
+    }
+    if (max == 0)landlordId = GAME_PLAYER - 1;
+    return landlordId;
+}
+
+void CTableSheTiQi::reset() {
+    for (int i = 0; i < GAME_PLAYER; i++) {
+        m_robLandlordValue[i] = -1;
+    }
+
+    SetRobState(ROB_STATE_INIT);
 }
 
 bool CTableSheTiQi::isRobLandlordFinish(int rob_value) {

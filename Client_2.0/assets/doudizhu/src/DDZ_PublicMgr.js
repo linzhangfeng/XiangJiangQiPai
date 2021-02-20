@@ -44,6 +44,10 @@ module.exports = cc.Class({
             GPlatform.toHall();
         });
 
+        this.bt_tohall_top = cc.find("bt_disband", this.rootNode);
+        GUtils.addBtnClick(this.bt_tohall_top, function (event) {
+            GTcp.sendDisband(cc.ddz.Model.seatid);
+        });
         cc.ddz.PublicMgr.hideAllBtns();
     },
 

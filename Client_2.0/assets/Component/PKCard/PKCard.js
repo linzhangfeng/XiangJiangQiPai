@@ -32,13 +32,13 @@ cc.Class({
     // use this for initialization
     onLoad: function () {
         this.initData();
-        this.initListener();
+        // this.initListener();
 
         this.nodeCard = cc.find("Card", this.node);
         this.nodeCard.active = false;
 
         this.nodeCardBack = cc.find("CardBack", this.node);
-        this.nodeCardBack.active = false;
+        this.nodeCardBack.active = true;
 
         this.nodeStoreColor = cc.find("StoreColor", this.node);
         this.nodeStoreColor.active = false;
@@ -68,10 +68,13 @@ cc.Class({
     setSelect: function (select) {
         if (this.isSelect != select) {
             this.isSelect = select;
-            this.node.color = select ? focusColor : cc.Color.WHITE;
+            this.nodeStoreColor.active = select;
         }
     },
 
+    getSelect() {
+        return this.isSelect;
+    },
     setBankerVis: function (v) {
         if (this.nodeBanker) this.nodeBanker.active = false;
     },
@@ -102,6 +105,7 @@ cc.Class({
     },
 
     setCardData: function (multiple, index, cbCardData) {
+        if (cbCardData == 0 || cbCardData == 255) return;
         //牌值与花色
         let cbColor = this.getCardColor(cbCardData) >> 4;
         let cbValue = ((cbCardData == 0x4E) || (cbCardData == 0x4F)) ? this.getCardValue(cbCardData) % 14 : this.getCardValue(cbCardData) - 1;

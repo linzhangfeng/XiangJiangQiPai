@@ -40,6 +40,9 @@ cc.Class({
 
         let Net = require("DDZ_Net");
         cc.ddz.Net = new Net();
+
+        let CardLib = require("./Cardlib/DDZ_CardLib");
+        cc.ddz.CardLib = new CardLib();
     },
     start() {
         cc.ddz.Table.init(this);

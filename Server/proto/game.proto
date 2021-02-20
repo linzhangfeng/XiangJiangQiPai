@@ -23,7 +23,6 @@ message GameScene
   optional int32 host_id = 3;                    //房主ID
   required int32 room_state = 4;                 //房间状态
   required int32 game_state = 5;                 //游戏状态
-  repeated HandCards hand_cards = 6;             //玩家信息
 }
 
 //玩家信息
@@ -44,6 +43,12 @@ message GameDisband
   optional int32 disband_id = 1;         //解散发起人ID
   optional int32 seatid = 2;            //庄家ID
   optional int32 state = 3;             //1:同意  2：反对
+}
+
+//空协议
+message Null
+{
+  optional int32 null = 1;         //解散发起人ID
 }
 
 

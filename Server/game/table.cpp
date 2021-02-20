@@ -2,7 +2,6 @@
 #include "../common/common.h"
 #include "../common/macros.h"
 #include "../common/protobuf2json.h"
-#include "../proto/game.pb.h"
 #include "../proto/proto.h"
 #include "../network/chttp.h"
 #include "../common/config.h"
@@ -184,6 +183,19 @@ void Table::setProtoPLayerInfo(proto::login::Player *msg_player, std::shared_ptr
     msg_player->set_score(player->GetScore());
     msg_player->set_ready(player->GetReady());
     msg_player->set_disband(player->GetDisband());
+}
+
+void Table::setProtoGameScene(proto::game::GameScene *msg_scene) {
+    //玩家信息
+    for (auto ele : m_vec_seatid) {
+        proto::login::Player *p = msg_scene->add_player_info();
+        if (m_map_player.find(ele) != m_map_player.end()) {
+            setProtoPLayerInfo(p, m_map_player[ele]);
+        }
+    }
+    msg_scene->set_host_id(GetHostid());
+    msg_scene->set_room_state(GetRoomState());
+    msg_scene->set_game_state(GetGameState());
 }
 
 void Table::sendDownTable() {

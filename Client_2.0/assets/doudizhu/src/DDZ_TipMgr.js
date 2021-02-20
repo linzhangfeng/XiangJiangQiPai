@@ -29,6 +29,7 @@ module.exports = cc.Class({
         let txtStr = score + "分";
         if (score == 0) txtStr = (isFirst) ? "不叫" : "不抢";
         GUtils.setLabelText(txt_tip, txtStr);
+        txt_tip.active = true;
     },
 
 });
