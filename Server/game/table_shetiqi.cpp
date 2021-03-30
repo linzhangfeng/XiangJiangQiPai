@@ -2,7 +2,6 @@
 #include "../common/common.h"
 #include "../common/macros.h"
 #include "../proto/proto.h"
-#include "../proto/landlord.pb.h"
 #include "../common/protobuf2json.h"
 #include "../common/log.h"
 #include <random>
@@ -51,7 +50,8 @@ void CTableSheTiQi::GameStart() {
 
     //开始叫地主  从座位ID为0
     m_curSeatId = 0;
-    sendRoblandlord(0, 0, 0, false);
+    SetRobState(ROB_STATE_PLAYING);
+    sendRoblandlord(0, false);
 
 }
 
@@ -97,26 +97,28 @@ void CTableSheTiQi::sendGameScene(int charid) {
     //抢庄状态
     msg.set_roblandlord_state(GetRobState());
 
-    //抢庄分数
-    for (int i = 0; i < GAME_PLAYER; i++) {
-        msg.add_roblandlord_values(m_robLandlordValue[i]);
-    }
+    msg.set_max_rod_score(m_curRobValue);
+    //抢庄信息
+    proto::landlord::RobLandlordInfo *roblandlord_info = msg.mutable_roblandlord_info();
+    setProtoRobLandlord(roblandlord_info);
+
+    //当前的操作用户
+    msg.set_operator_id(m_curSeatId);
 
     unicast(charid, SERVER_SCENE_INFO_UC, msg);
 
-//    Table::sendGameScene(charid);
+    //Table::sendGameScene(charid);
 }
 
-void CTableSheTiQi::sendRoblandlord(int seatid, int operatorId, int robValue, bool isFinish) {
+void CTableSheTiQi::sendRoblandlord(int seatid, int robValue) {
+    bool isFinish = isRobLandlordFinish(m_curRobValue);
+
     proto::landlord::RobLandlord msg;
     msg.set_seatid(seatid);
-    msg.set_operatorid(operatorId);
-    msg.set_rod_value(robValue);
-    msg.set_isfinish(isFinish);
-    msg.add_rod_values(ROB_VALUE_0);
-    for (int i = m_curRobValue + 1; i <= ROB_VALUE_3; i++) {
-        msg.add_rod_values(i);
-    }
+    msg.set_rod_score(robValue);
+
+    proto::landlord::RobLandlordInfo *roblandlord_info = msg.mutable_roblandlord_info();
+    setProtoRobLandlord(roblandlord_info);
     brocast(SERVER_ROBDISBAND_ACK, msg);
 }
 
@@ -141,17 +143,17 @@ void CTableSheTiQi::handler_client_roblandlord_select(int charid, const char *da
     }
     g_log.info("handler_client_roblandlord_select: %s\n", Protobuf2Json(msg).data());
 
-    int next_opertorId = getNextSeadId();
-    int rob_value = msg.rod_value();
+    int rob_value = msg.rod_score();
     int seatid = msg.seatid();
     if (rob_value > m_curRobValue)m_curRobValue = rob_value;
     m_curSeatId = getNextSeadId();
     m_robLandlordValue[seatid] = rob_value;
     bool isFinish = isRobLandlordFinish(rob_value);
-    sendRoblandlord(seatid, m_curSeatId, rob_value, isFinish);
+    sendRoblandlord(seatid, rob_value);
     if (isFinish) {
         m_landlordId = getLandlordId();
         sendRoblandlordResult();
+        SetRobState(ROB_STATE_FINISH);
     }
 }
 
@@ -192,5 +194,22 @@ void CTableSheTiQi::setProtoHandCards(proto::game::HandCards *msg, HandCards han
     msg->set_changeablecardslen(handcard.ChangeableCardsLen);
     for (int i = 0; i < handcard.ChangeableCardsLen; i++) {
         msg->add_changeablecards(handcard.ChangeableCards[i]);
+    }
+}
+
+void CTableSheTiQi::setProtoRobLandlord(proto::landlord::RobLandlordInfo *msg) {
+    bool isFinish = isRobLandlordFinish(m_curRobValue);
+    msg->set_operatorid(m_curSeatId);
+    msg->set_isfinish(isFinish);
+
+    //地主可以抢的分数
+    msg->add_can_rod_scores(ROB_VALUE_0);
+    for (int i = m_curRobValue + 1; i <= ROB_VALUE_3; i++) {
+        msg->add_can_rod_scores(i);
+    }
+
+    //所有玩家抢地主分数
+    for (int i = 0; i < GAME_PLAYER; i++) {
+        msg->add_rod_scores(m_robLandlordValue[i]);
     }
 }

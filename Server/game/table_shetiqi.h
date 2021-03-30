@@ -8,6 +8,7 @@
 #include "../liblandlord/landlord_cardpool.h"
 #include "../liblandlord/landlord_cardtype.h"
 #include "../proto/game.pb.h"
+#include "../proto/landlord.pb.h"
 
 enum LANDLORD_CMD {
     SERVER_ROBDISBAND_ACK = 20000,          //广播开始抢地主
@@ -48,7 +49,7 @@ protected:
 
     void sendHandCard();
 
-    void sendRoblandlord(int seatid, int operatorId, int robValue, bool isFinish);
+    void sendRoblandlord(int seatid, int robValue);
 
     void sendRoblandlordResult();
 
@@ -66,11 +67,12 @@ public:
     int m_robLandlordValue[GAME_PLAYER];                    //抢地主状态
     int m_landlordId;                                       //地主ID
 public:
+    void setProtoRobLandlord(proto::landlord::RobLandlordInfo *msg);                //抢地主信息
+    void setProtoHandCards(proto::game::HandCards *msg, HandCards handcard);    //设置发牌信息
+public:
     void getRobValue();
 
     bool isRobLandlordFinish(int rob_value);
-
-    void setProtoHandCards(proto::game::HandCards *msg, HandCards handcard);
 
     int getLandlordId();
 

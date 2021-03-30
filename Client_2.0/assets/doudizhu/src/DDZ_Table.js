@@ -150,16 +150,8 @@ module.exports = cc.Class({
     handler_server_rob_landlord_ack(data) {
         console.log('%c' + "handler_server_rob_landlord_ack:", 'color:red');
         let seatid = data.seatid;
-        let operatorid = data.operatorid;
-        let rod_values = data.rod_values;
         let rod_value = data.rod_value;
-        let isfinish = data.isfinish;
-        let isFirst = (seatid == operatorid);
-        let pos = cc.ddz.Model.getPosBySeatid(seatid);
-        if (cc.ddz.Model.isMyPlayer(operatorid) && !isfinish) {
-            cc.ddz.ActionMgr.setOperator(rod_values, isFirst);
-        }
-        if (!isFirst) cc.ddz.TipMgr.showRobScoreTxt(pos, rod_value, rod_values.length == 3);
+        this.showRobLandlordInfo(data.roblandlord_info, seatid);
     },
     handler_server_send_card(data) {
         console.log('%c' + "handler_server_send_card:", 'color:red');
@@ -282,6 +274,8 @@ module.exports = cc.Class({
         cc.ddz.Model.roomState = public_scene.room_state;
         cc.ddz.Model.gameState = public_scene.game_state;
         cc.ddz.Model.hostId = public_scene.host_id;
+        cc.ddz.Model.cur_seat = data.operator_id;
+
         this.initPlayerData(public_scene.player_info)
 
         if (cc.ddz.Model.roomState == RoomState.RoomFree) {
@@ -294,14 +288,25 @@ module.exports = cc.Class({
         }
 
         if (cc.ddz.Model.gameState == GameState.GamePlaying) {
+            let roblandlord_state = data.roblandlord_state;
+            let operator_id = data.operator_id;
+            let public_cards = data.public_cards;
+
             //恢复玩家手牌
             let handcards = data.hand_cards[cc.ddz.Model.seatid].changeableCards;
             cc.ddz.CardsMgr.setHandCardsValue(handcards);
             cc.ddz.CardsMgr.updateHandcards();
 
+            //恢复底牌
+            cc.ddz.CardsMgr.setPublicCardsValue(public_cards);
+            cc.ddz.CardsMgr.updatePublicCards(public_cards);
+
             //恢复出牌区域的牌
 
             //恢复抢地主状态
+            if (roblandlord_state == ROB_LANDLORD_STATE.ROB_STATE_PLAYING) {
+                this.showRobLandlordInfo(data.roblandlord_info);
+            }
         }
     },
 
@@ -355,5 +360,20 @@ module.exports = cc.Class({
             cc.ddz.PlayerMgr.upTable(pinfo);
         }
     },
+    showRobLandlordInfo(robinfo) {
+        let isfinish = robinfo.isfinish;
+        let operatorid = robinfo.operatorid;
+        let can_rod_scores = robinfo.can_rod_scores;
+        let rod_scores = robinfo.rod_scores;
+        let isCall = (rod_scores.length == 4);
 
+        if (cc.ddz.Model.isMyPlayer(operatorid) && !isfinish) {
+            cc.ddz.ActionMgr.setOperator(can_rod_scores, isCall);
+        }
+
+        for (let i = 0; i < rod_scores.length; i++) {
+            let pos = cc.ddz.Model.getPosBySeatid(i);
+            if (rod_scores[i] >= 0) cc.ddz.TipMgr.showRobScoreTxt(pos, rod_scores[i], isCall);
+        }
+    },
 });
